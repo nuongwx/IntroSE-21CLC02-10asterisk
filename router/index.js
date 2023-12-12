@@ -121,6 +121,21 @@ router.delete('/quest/:id', (req, res) => {
         });
 });
 
+// Get top quest for homepage
+router.get('/home/quest/top4Quests/', async (req, res) => {
+    try {
+        // Use Mongoose to query the database and sort by averageRating
+        const topRatedQuests = await Quest.find().sort({ averageRating: -1 }).limit(4);
+
+        res.json(topRatedQuests);
+    }
+    catch (error) {
+        console.error('Error fetching top-rated quests:', error.message);
+        res.status(500).json({ error: 'Internal Server Error' });
+    }
+});
+
+
 
 // TODOS: malfunctioned body params, sort questions on any changes
 
