@@ -57,16 +57,32 @@ QuestSchema.virtual('attempts', {
 });
 
 QuestSchema.virtual('averageRating').get(function () {
-    if (this.ratings.length === 0) return 0;
-    return this.ratings.reduce((acc, cur) => acc + cur.rating, 0) / this.ratings.length;
+    // Check if this.ratings is defined and is an array
+    if (Array.isArray(this.ratings) && this.ratings.length > 0) {
+        // Filter out null or undefined ratings and calculate the average
+        const validRatings = this.ratings.filter(rating => rating && rating.rating !== undefined);
+        
+        if (validRatings.length > 0) {
+            const sum = validRatings.reduce((acc, cur) => acc + cur.rating, 0);
+            return sum / validRatings.length;
+        }
+    }
+
+    return 0; // Return 0 if there are no valid ratings
 });
 
 QuestSchema.virtual('totalAttempts').get(function () {
-    return this.attempts.length;
+    if (Array.isArray(this.attempts)) {
+        return this.attempts.length;
+    }
+    return 0; // Return 0 if this.attempts is not an array
 });
 
 QuestSchema.virtual('totalOrders').get(function () {
-    return this.orders.length;
+    if (Array.isArray(this.orders)) {
+        return this.orders.length;
+    }
+    return 0; // Return 0 if this.orders is not an array
 });
 
 
