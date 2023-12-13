@@ -1,7 +1,5 @@
 import { Link } from 'react-router-dom';
 import React, { useState, useEffect } from 'react';
-import { Jumbotron, Container, Row, Col, Card, Button } from 'react-bootstrap';
-import { PlayFill } from 'react-bootstrap-icons';
 import axios from 'axios';
 
 // Display star on quest card
@@ -50,177 +48,175 @@ const Home = () => {
     return (
         <>
         {/* Hero section */}
-        <Jumbotron className="text-white row align-items-center justify-content-start" style={{ height: '75vh', backgroundImage: `url("/Home/Images/Hero background.png")`, backgroundSize: 'cover', width: '100vw' }}>
-            <Container className="text-dark" style={{ padding: '0' }}>
-                <Row>
-                    <Col xs={10} sm={8} md={6} lg={4}>
+        <div className="jumbotron text-white row align-items-center justify-content-start m-0" style={{ height: '75vh', backgroundImage: `url('/Home/Images/Hero background.png')`, backgroundSize: 'cover', width: '100%' }}>
+            <div className="container text-dark px-md-5">
+                <div className="row w-100">
+                    <div className="col-xs-10 col-sm-8 col-md-6 col-lg-4">
                         <h1>Game tour khám phá thành phố</h1>
                         <p>Ứng dụng sẽ dẫn lối bạn đến những điểm tham quan thú vị, tham gia giải mã thử thách và mở khoá những câu chuyện đặc sắc xung quanh thành phố!</p>
-                        <Button variant="warning" className="rounded-pill mr-3">Khám phá ngay</Button>
-                        <Button variant="outline-warning" className="rounded-pill"><PlayFill size={24} />Demo</Button>
-                    </Col>
-                </Row>
-            </Container>
-        </Jumbotron>
+                        <button type="button" className="btn btn-warning rounded-pill mr-3">Khám phá ngay</button>
+                        <button type="button" className="btn btn-outline-warning rounded-pill"><i className='bi bi-play'></i>Demo</button>
+                    </div>
+                </div>
+            </div>
+        </div>
 
         {/* Introduction */}
-        <Container className="mt-5">
-            <h2 className="text-center">Vì sao Geoquiz được yêu thích</h2>
-            <p className='text-center'><b>Chúng tôi cung cấp các Quest là các tour du lịch tự túc đã được game hoá với các thử thách thú vị trong chuyến đi</b></p>
-            <Row className="justify-content-center my-5">
-                <Col xs={12} sm={6} md={4} lg={3} gap={3}>
-                    <Card className="mb-4" border="0">
-                        <Card.Img variant="top" src="/Home/Images/Safety.svg" width='50' height='50'>
-                        </Card.Img>
-                        <Card.Body className="text-center">
-                            <Card.Title>An toàn & riêng tư</Card.Title>
-                            <Card.Text>Đi riêng cùng bạn bè và gia đình. Thích hợp với thời kì covid-19</Card.Text>
-                        </Card.Body>
-                    </Card>
-                </Col>
-                <Col xs={12} sm={6} md={4} lg={3} gap={3}>
-                    <Card className="mb-4" border="0">
-                        <Card.Img variant="top" src="/Home/Images/Payment.svg" width='50' height='50'>
-                        </Card.Img>
-                        <Card.Body className="text-center">
-                            <Card.Title>Thanh toán tức thời</Card.Title>
-                            <Card.Text>Không cần đặt trước. Đặt vào phút cuối và mở khoá Quest ngay lập tức</Card.Text>
-                        </Card.Body>
-                    </Card>
-                </Col>
-                <Col xs={12} sm={6} md={4} lg={3} gap={3}>
-                    <Card className="mb-4" border="0">
-                        <Card.Img variant="top" src="/Home/Images/Time.svg" width='50' height='50'>
-                        </Card.Img>
-                        <Card.Body className="text-center">
-                            <Card.Title>Thời gian linh hoạt</Card.Title>
-                            <Card.Text>Bất cứ khi nào bạn muốn chỉ cần đi đến điểm xuất phát</Card.Text>
-                        </Card.Body>
-                    </Card>
-                </Col>
-                <Col xs={12} sm={6} md={4} lg={3} gap={3}>
-                    <Card className="mb-4" border="0">
-                        <Card.Img variant="top" src="/Home/Images/Experience.svg" width='50' height='50'>
-                        </Card.Img>
-                        <Card.Body className="text-center">
-                            <Card.Title>Trải nghiệm vui lạ</Card.Title>
-                            <Card.Text>Hoạt động ngộ nghĩnh với các thử thách lý thú trong thời gian thực</Card.Text>
-                        </Card.Body>
-                    </Card>
-                </Col>
-            </Row>
-        </Container>
+        <div class="container mt-5">
+            <h2 class="text-center">Vì sao Geoquiz được yêu thích</h2>
+            <p class="text-center"><b>Chúng tôi cung cấp các Quest là các tour du lịch tự túc đã được game hoá với các thử thách thú vị trong chuyến đi</b></p>
+            <div class="row justify-content-center my-5">
+                <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3 gap-3">
+                    <div class="card mb-4 border-0">
+                        <img class="card-img-top" src="/Home/Images/Safety.svg" alt="Safety" width="50" height="50" />
+                        <div class="card-body text-center">
+                            <h5 class="card-title">An toàn & riêng tư</h5>
+                            <p class="card-text">Đi riêng cùng bạn bè và gia đình. Thích hợp với thời kì covid-19</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3 gap-3">
+                    <div class="card mb-4 border-0">
+                        <img class="card-img-top" src="/Home/Images/Payment.svg" alt="Payment" width="50" height="50" />
+                        <div class="card-body text-center">
+                            <h5 class="card-title">Thanh toán tức thời</h5>
+                            <p class="card-text">Không cần đặt trước. Đặt vào phút cuối và mở khoá Quest ngay lập tức</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3 gap-3">
+                    <div class="card mb-4 border-0">
+                        <img class="card-img-top" src="/Home/Images/Time.svg" alt="Time" width="50" height="50" />
+                        <div class="card-body text-center">
+                            <h5 class="card-title">Thời gian linh hoạt</h5>
+                            <p class="card-text">Bất cứ khi nào bạn muốn,chỉ cần đi đến điểm xuất phát</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3 gap-3">
+                    <div class="card mb-4 border-0">
+                        <img class="card-img-top" src="/Home/Images/Experience.svg" alt="Experience" width="50" height="50" />
+                        <div class="card-body text-center">
+                            <h5 class="card-title">Trải nghiệm vui lạ</h5>
+                            <p class="card-text">Hoạt động nhập vai ngộ nghĩnh với các thử thách lý thú trong đời thực</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
 
         {/* Top quest */}
-        <Container className="mt-5">
+        <div className="container mt-5">
             <h2 className="text-center">Trải nghiệm hot nhất</h2>
-            <Row className='my-5'>
-            {topQuests.map((quest) => (
-                <Col key={quest.id} xs={12} sm={6} md={4} lg={3} gap={3}>
-                    <Link to={`/quest/${quest.id}`} className='text-decoration-none text-dark'>
-                        <Card className="mb-4" border="0">
-                            <Card.Img variant="top" src={quest.image} alt={quest.title} style={{ borderRadius: '2rem' }} />
-                            <Card.Body className="p-0">
-                                <Card.Text className="m-0">
-                                    <RatingStars rating={quest.averageRating} /> {quest.averageRating} ({quest.ratings.length})
-                                </Card.Text>
-                                <Card.Title style={{ textTransform: 'capitalize' }} className="my-1">{quest.title}</Card.Title>                                
-                                <Card.Text>{quest.price} đ / người - </Card.Text>
-                            </Card.Body>
-                        </Card>
+            <div className="row my-5">
+                {topQuests.map((quest) => (
+                <div key={quest.id} className="col-xs-12 col-sm-6 col-md-4 col-lg-3 gap-3">
+                    <Link to={`/quest/${quest.id}`} className="text-decoration-none text-dark">
+                        <div className="card mb-4 border-0" style={{ borderRadius: '2rem', overflow: 'hidden' }}>
+                            <img src={quest.image} className="card-img-top" alt={quest.title} style={{ borderRadius: '2rem' }} />
+                            <div className="card-body p-0">
+                            <p className="m-0">
+                                <RatingStars rating={quest.averageRating} /> {quest.averageRating} ({quest.ratings.length})
+                            </p>
+                            <h5 style={{ textTransform: 'capitalize' }} className="my-1">{quest.title}</h5>
+                            <p>{quest.price}đ/người</p>
+                            </div>
+                        </div>
                     </Link>
-                </Col>
-            ))}
-            </Row>
-            <Row className='justify-content-center'>
-                <Button variant="outline-primary" className="text-center rounded-pill">Khám phá thêm</Button>
-            </Row>
-        </Container>
-        
+                </div>
+                ))}
+            </div>
+            <div className="row justify-content-center">
+                <button className="btn btn-outline-primary text-center rounded-pill w-auto">Khám phá thêm</button>
+            </div>
+        </div>
+
         {/* Top places */}
-        <Container className="mt-5">
+        <div className="container mt-5">
             <h2 className="text-center">Top địa điểm</h2>
-            <Row className="justify-content-center my-5">
-                <Col xs={6} md={4} lg={2} gap={3}>
-                    <Card className="mb-4" border="0">
-                    <Card.Img variant="top" src="/Home/Images/HCM.png" style={{ borderRadius: '2rem'}}/>
-                    <Card.ImgOverlay className="row align-items-center justify-content-center">
-                        <h1 className="text-light text-center">TP Hồ Chí Minh</h1>
-                    </Card.ImgOverlay>
-                    </Card>
-                </Col>
-                <Col xs={6} md={4} lg={2} gap={3}>
-                    <Card className="mb-4" border="0">
-                    <Card.Img variant="top" src="/Home/Images/TN.png" style={{ borderRadius: '2rem'}}/>
-                    <Card.ImgOverlay className="row align-items-center justify-content-center">
-                        <h1 className="text-light text-center">Tây Ninh</h1>
-                    </Card.ImgOverlay>
-                    </Card>
-                </Col>
-                <Col xs={6} md={4} lg={2} gap={3}>
-                    <Card className="mb-4" border="0">
-                    <Card.Img variant="top" src="/Home/Images/Hue.png" style={{ borderRadius: '2rem'}}/>
-                    <Card.ImgOverlay className="row align-items-center justify-content-center">
-                        <h1 className="text-light text-center">Huế</h1>
-                    </Card.ImgOverlay>
-                    </Card>
-                </Col>
-                <Col xs={6} md={4} lg={2} gap={3}>
-                    <Card className="mb-4" border="0">
-                    <Card.Img variant="top" src="/Home/Images/HN.png" style={{ borderRadius: '2rem'}}/>
-                    <Card.ImgOverlay className="row align-items-center justify-content-center">
-                        <h1 className="text-light text-center">Hà Nội</h1>
-                    </Card.ImgOverlay>
-                    </Card>
-                </Col>
-                <Col xs={6} md={4} lg={2} gap={3}>
-                    <Card className="mb-4" border="0">
-                    <Card.Img variant="top" src="/Home/Images/NT.png" style={{ borderRadius: '2rem'}}/>
-                    <Card.ImgOverlay className="row align-items-center justify-content-center">
-                        <h1 className="text-light text-center">Nha Trang</h1>
-                    </Card.ImgOverlay>
-                    </Card>
-                </Col>
-            </Row>
-        </Container>
+            <div className="row justify-content-center my-5">
+                <div className="col-xs-6 col-md-4 col-lg-2">
+                    <div className="card mb-4" style={{ borderRadius: '2rem', overflow: 'hidden' }}>
+                        <img src="/Home/Images/HCM.png" className="card-img-top" alt="TP Hồ Chí Minh" style={{ borderRadius: '2rem' }} />
+                        <div className="card-img-overlay d-flex align-items-center justify-content-center">
+                            <h1 className="text-light text-center">TP Hồ Chí Minh</h1>
+                        </div>
+                    </div>
+                </div>
+                <div className="col-xs-6 col-md-4 col-lg-2">
+                    <div className="card mb-4" style={{ borderRadius: '2rem', overflow: 'hidden' }}>
+                        <img src="/Home/Images/TN.png" className="card-img-top" alt="Tây Ninh" style={{ borderRadius: '2rem' }} />
+                        <div className="card-img-overlay d-flex align-items-center justify-content-center">
+                            <h1 className="text-light text-center">Tây Ninh</h1>
+                        </div>
+                    </div>
+                </div>
+                <div className="col-xs-6 col-md-4 col-lg-2">
+                <div className="card mb-4" style={{ borderRadius: '2rem', overflow: 'hidden' }}>
+                    <img src="/Home/Images/Hue.png" className="card-img-top" alt="Huế" style={{ borderRadius: '2rem' }} />
+                    <div className="card-img-overlay d-flex align-items-center justify-content-center">
+                    <h1 className="text-light text-center">Huế</h1>
+                    </div>
+                </div>
+                </div>
+                <div className="col-xs-6 col-md-4 col-lg-2">
+                    <div className="card mb-4" style={{ borderRadius: '2rem', overflow: 'hidden' }}>
+                        <img src="/Home/Images/HN.png" className="card-img-top" alt="Hà Nội" style={{ borderRadius: '2rem' }} />
+                        <div className="card-img-overlay d-flex align-items-center justify-content-center">
+                            <h1 className="text-light text-center">Hà Nội</h1>
+                        </div>
+                    </div>
+                </div>
+                <div className="col-xs-6 col-md-4 col-lg-2">
+                    <div className="card mb-4" style={{ borderRadius: '2rem', overflow: 'hidden' }}>
+                        <img src="/Home/Images/NT.png" className="card-img-top" alt="Nha Trang" style={{ borderRadius: '2rem' }} />
+                        <div className="card-img-overlay d-flex align-items-center justify-content-center">
+                            <h1 className="text-light text-center">Nha Trang</h1>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
 
         {/* Become a creator */}
-        <Container className="mt-5">
+        <div className="container mt-5">
             <h2 className="text-center">Trở thành người sáng tạo</h2>
-            <p className='text-center'><b>Chúng tôi cung cấp các Quest là các tour du lịch tự túc đã được game hoá với các thử thách thú vị trong chuyến đi</b></p>
-            <Row className="justify-content-center my-5">
-                <Col xs={12} sm={6} md={4} lg={4} gap={3}>
-                    <Card className="py-4" border="0" style={{ boxShadow: '4px 4px 8px rgba(0, 0, 0, 0.5)'}}>
-                        <Card.Img variant="top" src="/Home/Images/Travel Company.svg" width='100' height='100'>
-                        </Card.Img>
-                        <Card.Body className="text-center">
-                            <Card.Title>Công ty du lịch lữ hành</Card.Title>
-                        </Card.Body>
-                    </Card>
-                </Col>
-                <Col xs={12} sm={6} md={4} lg={4} gap={3}>
-                    <Card className="py-4" border="0" style={{ boxShadow: '4px 4px 8px rgba(0, 0, 0, 0.5)'}}>
-                        <Card.Img variant="top" src="/Home/Images/Tour guide.svg" width='100' height='100'>
-                        </Card.Img>
-                        <Card.Body className="text-center">
-                            <Card.Title>Hướng dẫn viên du lịch</Card.Title>
-                        </Card.Body>
-                    </Card>
-                </Col>
-                <Col xs={12} sm={6} md={4} lg={4} gap={3}>
-                    <Card className="py-4" border="0" style={{ boxShadow: '4px 4px 8px rgba(0, 0, 0, 0.5)'}}>
-                        <Card.Img variant="top" src="/Home/Images/Blogger.svg" width='100' height='100'>
-                        </Card.Img>
-                        <Card.Body className="text-center">
-                            <Card.Title>Chuyên gia địa phương & Blogger</Card.Title>
-                        </Card.Body>
-                    </Card>
-                </Col>
-            </Row>
-            <Row className='justify-content-center'>
-                <Button variant="outline-primary" className="text-center rounded-pill">Tìm hiểu ngay</Button>
-            </Row>
-        </Container>
+            <p className="text-center">
+                <b>
+                Chúng tôi cung cấp các Quest là các tour du lịch tự túc đã được game
+                hoá với các thử thách thú vị trong chuyến đi
+                </b>
+            </p>
+            <div className="row justify-content-center my-5">
+                <div className="col-xs-12 col-sm-6 col-md-4 col-lg-4">
+                    <div className="card mb-4" style={{ boxShadow: '4px 4px 8px rgba(0, 0, 0, 0.5)' }}>
+                        <img className="card-img-top" src="/Home/Images/Travel Company.svg" alt="Travel Company" width="100" height="100"/>
+                        <div className="card-body text-center">
+                            <h5 className="card-title">Công ty du lịch lữ hành</h5>
+                        </div>
+                    </div>
+                </div>
+                <div className="col-xs-12 col-sm-6 col-md-4 col-lg-4">
+                    <div className="card mb-4" style={{ boxShadow: '4px 4px 8px rgba(0, 0, 0, 0.5)' }}>
+                        <img className="card-img-top" src="/Home/Images/Tour guide.svg" alt="Tour guide" width="100" height="100"/>
+                        <div className="card-body text-center">
+                            <h5 className="card-title">Hướng dẫn viên du lịch</h5>
+                        </div>
+                    </div>
+                </div>
+                <div className="col-xs-12 col-sm-6 col-md-4 col-lg-4">
+                    <div className="card mb-4" style={{ boxShadow: '4px 4px 8px rgba(0, 0, 0, 0.5)' }}>
+                        <img className="card-img-top" src="/Home/Images/Blogger.svg" alt="Blogger" width="100" height="100"/>
+                        <div className="card-body text-center">
+                            <h5 className="card-title">Chuyên gia địa phương & Blogger</h5>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div className="row justify-content-center">
+                <button className="btn btn-outline-primary text-center rounded-pill w-auto">Tìm hiểu ngay</button>
+            </div>
+        </div>
 
         </>
     );

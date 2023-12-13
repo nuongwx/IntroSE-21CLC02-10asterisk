@@ -1,30 +1,39 @@
 import { Link } from "react-router-dom";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import React from 'react';
-import { Container, Nav, Navbar, Button } from 'react-bootstrap';
 
 
 const NavbarComponent = () => {
     return (
-        <Navbar expand="lg" bg="transparent" style={{zIndex: 1000, position: 'absolute', width: '100%' }}>
-            <Container>
-                <Navbar.Brand as={Link} to="/" className="text-warning">
-                <img src="/logo.svg" width="30" height="30" className="d-inline-block align-top mr-lg-3" alt="Logo" />
-                <b>Geo Quiz</b>
-                </Navbar.Brand>
-                <Navbar.Toggle aria-controls="basic-navbar-nav" />
-                <Navbar.Collapse id="basic-navbar-nav" className="justify-content-end">
-                    <Nav className="ms-auto">
-                        <Nav.Link href="/" className="p-lg-0 mx-lg-3 mt-lg-auto mb-lg-auto"><b>Hướng dẫn sử dụng</b></Nav.Link>
-                        <Nav.Link href="#" className="p-lg-0 mx-lg-3 mt-lg-auto mb-lg-auto"><b>Tạo câu chuyện</b></Nav.Link>
-                        <Nav.Link href="/help" className="p-lg-0 mx-lg-3 mt-lg-auto mb-lg-auto"><b>Trợ giúp</b></Nav.Link>
-                        <Nav.Link href="/login" className="mx-lg-3">
-                        <Button variant="outline-warning" className="rounded-pill"><b>Đăng nhập</b></Button>
-                        </Nav.Link>
-                    </Nav>
-                </Navbar.Collapse>
-            </Container>
-        </Navbar>
+        <nav className="navbar navbar-expand-lg navbar-light bg-transparent" style={{ zIndex: 1000, position: 'absolute', width: '100%' }}>
+            <div className="container">
+                <Link to="/" className="navbar-brand text-warning">
+                    <img src="/logo.svg" width="30" height="30" className="d-inline-block align-top mr-lg-3" alt="Logo" />
+                    <b>Geo Quiz</b>
+                </Link>
+                <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span className="navbar-toggler-icon"></span>
+                </button>
+                <div className="collapse navbar-collapse justify-content-end" id="navbarNav">
+                    <ul className="navbar-nav ms-auto">
+                        <li className="nav-item d-flex align-items-center">
+                            <a href="#" className="nav-link"><b>Hướng dẫn sử dụng</b></a>
+                        </li>
+                        <li className="nav-item d-flex align-items-center">
+                            <a href="#" className="nav-link"><b>Tạo câu chuyện</b></a>
+                        </li>
+                        <li className="nav-item d-flex align-items-center">
+                            <a href="/help" className="nav-link"><b>Trợ giúp</b></a>
+                        </li>
+                        <li className="nav-item d-flex align-items-center">
+                            <a href="/login" className="nav-link mx-lg-3">
+                                <button className="btn btn-outline-warning rounded-pill"><b>Đăng nhập</b></button>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
     );
 }
 
