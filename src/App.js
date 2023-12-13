@@ -1,32 +1,21 @@
-import './styles/App.css';
-
-import Home from './pages/home.js';
-import Quiz from './pages/quiz.js';
-import Login from './pages/login.js'
-import NavbarComponent from './pages/navbar.js'
-
+import React from 'react';
 import { Routes, Route } from 'react-router-dom';
-
-import { QueryClient, QueryClientProvider, useQuery } from '@tanstack/react-query';
+import './styles/App.css';
+import Home from './pages/home';
+import Login from './pages/login';
+import NavbarComponent from './pages/navbar';
 
 function App() {
-    let component
-    switch (window.location.pathname){
-        case "/":
-            component = <Home />;
-            break;
-        case "/login":
-            component = <Login />;
-            break;
-        default:
-            component = <Home />
-    }
-    return (
-        <>
-            <NavbarComponent />
-            {component}
-        </>
-    );
+  return (
+    <div>
+      <NavbarComponent />
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/login" element={<Login />} />
+        {/* Add other routes here */}
+      </Routes>
+    </div>
+  );
 }
 
 export default App;

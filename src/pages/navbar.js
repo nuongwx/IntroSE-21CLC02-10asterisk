@@ -1,5 +1,3 @@
-import { Link } from "react-router-dom";
-import 'bootstrap/dist/css/bootstrap.min.css';
 import React from 'react';
 
 
@@ -7,10 +5,10 @@ const NavbarComponent = () => {
     return (
         <nav className="navbar navbar-expand-lg navbar-light bg-transparent" style={{ zIndex: 1000, position: 'absolute', width: '100%' }}>
             <div className="container">
-                <Link to="/" className="navbar-brand text-warning">
+                <a href="/" className="navbar-brand text-warning">
                     <img src="/logo.svg" width="30" height="30" className="d-inline-block align-top mr-lg-3" alt="Logo" />
                     <b>Geo Quiz</b>
-                </Link>
+                </a>
                 <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                     <span className="navbar-toggler-icon"></span>
                 </button>
