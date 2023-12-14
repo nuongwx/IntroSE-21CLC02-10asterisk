@@ -7,31 +7,27 @@ const User = require('./user');
 const QuestSchema = new mongoose.Schema({
     title: {
         type: String,
-        required: true,
         trim: true,
-        maxlength: 100
     },
     description: {
         type: String,
-        required: true,
         trim: true,
     },
     price: {
         type: Number,
-        required: true,
         default: 0
     },
     image: {
         type: String,
         default: 'https://via.placeholder.com/150'
-        // required: true,
-        // trim: true,
-        // maxlength: 1000
     },
     questions: [QuestionSchema],
 
     ratings: [RatingSchema],
 
+    duration: Number,
+    distance: Number,
+    commission: Number,
 
     // creator, location, category, tags, status, createdDate, updatedDate
 
@@ -39,7 +35,7 @@ const QuestSchema = new mongoose.Schema({
 
 QuestSchema.pre('validate', function (next) {
     this.questions.sort((a, b) => {
-        return a.order > b.order ? -1 : 1;
+        return a.order > b.order ? 1 : -1;
     });
     next();
 });

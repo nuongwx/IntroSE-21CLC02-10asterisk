@@ -19,7 +19,8 @@ const UserSchema = new mongoose.Schema({
     role: {
         type: String,
         required: true,
-        default: 'user'
+        default: 'user',
+        enum: ['user', 'admin', 'creator', 'pending']
     },
 });
 
@@ -43,11 +44,11 @@ UserSchema.virtual('attempts', {
     foreignField: 'user'
 });
 
-// UserSchema.virtual('rating', {
-//     ref: 'Rating',
-//     localField: '_id',
-//     foreignField: 'user'
-// });
+UserSchema.virtual('rating', {
+    ref: 'Rating',
+    localField: '_id',
+    foreignField: 'user'
+});
 
 UserSchema.set('toObject', { virtuals: true });
 UserSchema.set('toJSON', { virtuals: true });

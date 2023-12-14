@@ -13,6 +13,10 @@ const QuestionSchema = new mongoose.Schema({
         trim: true,
         maxlength: 1000
     },
+    order: {
+        type: Number,
+        required: true
+    },
     location: {
         type: {
             type: String,
@@ -27,8 +31,6 @@ const QuestionSchema = new mongoose.Schema({
     info: {
         type: String,
         // required: true,
-        trim: true,
-        maxlength: 1000
     },
 });
 

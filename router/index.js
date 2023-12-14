@@ -1,64 +1,13 @@
 const express = require('express');
 const router = express.Router();
 
-const Request = require('../models/request');
 const Quest = require('../models/quest');
 const Question = require('../models/question');
 const Order = require('../models/order');
+const User = require('../models/user');
 
 router.get('/', (req, res) => {
     res.send('Hello World!');
-});
-
-router.get('/request', (req, res) => {
-    Request.find()
-        .then((result) => {
-            res.json(result);
-        })
-        .catch((err) => {
-            console.log(err);
-        });
-});
-
-router.get('/request/:id', (req, res) => {
-    Request.findById(req.params.id)
-        .then((result) => {
-            res.json(result);
-        })
-        .catch((err) => {
-            console.log(err);
-        });
-});
-
-router.post('/request', (req, res) => {
-    const request = new Request(req.body);
-    request.save()
-        .then((result) => {
-            res.json(result);
-        })
-        .catch((err) => {
-            console.log(err);
-        });
-});
-
-router.put('/request/:id', (req, res) => {
-    Request.findByIdAndUpdate(req.params.id, req.body)
-        .then((result) => {
-            res.json(result);
-        })
-        .catch((err) => {
-            console.log(err);
-        });
-});
-
-router.delete('/request/:id', (req, res) => {
-    Request.findByIdAndDelete(req.params.id)
-        .then((result) => {
-            res.json(result);
-        })
-        .catch((err) => {
-            console.log(err);
-        });
 });
 
 // get all quests
@@ -115,6 +64,165 @@ router.delete('/quest/:id', (req, res) => {
     Quest.findByIdAndDelete(req.params.id)
         .then((result) => {
             res.json(result);
+        })
+        .catch((err) => {
+            console.log(err);
+        });
+});
+
+// get quest's questions by quest id
+router.get('/quest/:id/questions', (req, res) => {
+    Quest.findById(req.params.id)
+        .then((result) => {
+            res.json(result.questions);
+        })
+        .catch((err) => {
+            console.log(err);
+        });
+});
+
+// create new question for quest by quest id
+router.post('/quest/:id/questions', (req, res) => {
+    const question = new Question(req.body);
+    Quest.findById(req.params.id)
+        .then((result) => {
+            result.questions.push(question);
+            result.save()
+                .then((result) => {
+                    res.json(result);
+                })
+                .catch((err) => {
+                    console.log(err);
+                });
+        })
+        .catch((err) => {
+            console.log(err);
+        });
+});
+
+// get question by quest id and question id
+router.get('/quest/:id/questions/:questionId', (req, res) => {
+    Quest.findById(req.params.id)
+        .then((result) => {
+            res.json(result.questions.id(req.params.questionId));
+        })
+        .catch((err) => {
+            console.log(err);
+        });
+});
+
+// update question by quest id and question id body params
+router.put('/quest/:id/questions/:questionId', (req, res) => {
+    Quest.findById(req.params.id)
+        .then((result) => {
+            const question = result.questions.id(req.params.questionId);
+            question.set(req.body);
+            result.save()
+                .then((result) => {
+                    res.json(result);
+                })
+                .catch((err) => {
+                    console.log(err);
+                });
+        })
+        .catch((err) => {
+            console.log(err);
+        });
+});
+
+// delete question by quest id and question id
+router.delete('/quest/:id/questions/:questionId', (req, res) => {
+    Quest.findByIdAndUpdate(req.params.id, {
+        $pull: {
+            questions: { _id: req.params.questionId }
+        }
+    })
+        .then((result) => {
+            res.json(result);
+        })
+        .catch((err) => {
+            console.log(err);
+        });
+});
+
+// get all orders
+router.get('/order', (req, res) => {
+    Order.find()
+        .then((result) => {
+            res.json(result);
+        })
+        .catch((err) => {
+            console.log(err);
+        });
+});
+
+// get order by id
+router.get('/order/:id', (req, res) => {
+    Order.findById(req.params.id)
+        .then((result) => {
+            res.json(result);
+        })
+        .catch((err) => {
+            console.log(err);
+        });
+});
+
+// update order by id body params
+router.put('/order/:id', (req, res) => {
+    Order.findById(req.params.id)
+        .then((result) => {
+            result.set(req.body);
+            result.save()
+                .then((result) => {
+                    res.json(result);
+                })
+                .catch((err) => {
+                    console.log(err);
+                });
+        })
+        .catch((err) => {
+            console.log(err);
+        });
+});
+
+// get all users
+router.get('/user', (req, res) => {
+    User.find()
+        .then((result) => {
+            res.json(result);
+        })
+        .catch((err) => {
+            console.log(err);
+        });
+});
+
+// get user by id
+router.get('/user/:id', (req, res) => {
+    User.findById(req.params.id)
+        .populate('orders')
+        .populate('quests')
+        .populate('attempts')
+        .populate('rating')
+        .then((result) => {
+            res.json(result);
+        })
+        .catch((err) => {
+            console.log(err);
+        });
+});
+
+// update user by id body params
+router.put('/user/:id', (req, res) => {
+    User.findById(req.params.id)
+        .then((result) => {
+            result.set(req.body);
+            result.save()
+                .then((result) => {
+                    res.json(result);
+                })
+                .catch((err) => {
+                    console.log(err);
+                });
         })
         .catch((err) => {
             console.log(err);
