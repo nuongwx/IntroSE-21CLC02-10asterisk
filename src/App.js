@@ -1,12 +1,16 @@
 import {React, useState } from 'react';
 import { Routes, Route } from 'react-router-dom';
+import { QueryClient, QueryClientProvider, useQuery } from '@tanstack/react-query';
+
 import './styles/App.css';
 import Home from './pages/home';
 import Login from './pages/login';
-import Quiz from './pages/quiz'
 import NavbarComponent from './pages/navbar';
 import Register from './pages/register';
 import ProtectedRoute from './ProtectedRoute.js'
+
+import QuestList from './pages/management/quest-list.jsx';
+import QuestEditor from './pages/management/quest-editor.jsx';
 
 function App() {
   const [isLoggedIn, setLoggedIn] = useState(false);
@@ -18,10 +22,9 @@ function App() {
   const handleLogout = () => {
     setLoggedIn(false);
   };
-
   return (
-    <>
-      <NavbarComponent isLoggedIn={isLoggedIn} onLogout={handleLogout} />
+    <QueryClientProvider client={new QueryClient()} >
+       <NavbarComponent isLoggedIn={isLoggedIn} onLogout={handleLogout} />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/login" element={
@@ -34,9 +37,11 @@ function App() {
             <Register/>
           </ProtectedRoute>
         } />
+        <Route path="/management/" element={<QuestList/>} />
+        <Route path="/management/:questId" element={<QuestEditor />} />
         {/* Add other routes here */}
       </Routes>
-    </>
+      </QueryClientProvider>
   );
 }
 
