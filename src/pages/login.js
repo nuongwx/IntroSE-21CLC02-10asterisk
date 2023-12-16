@@ -1,11 +1,19 @@
-import React, { useState } from 'react';
+import React, { useState , useEffect} from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import { setAuthToken } from '../hooks/auth'
 
-const Login = () => {
+const Login = ({ isLoggedIn, onLogin }) => {
     const [credentials, setCredentials] = useState({ email: '', password: '' });
     const [loginError, setLoginError] = useState('');
     const navigate = useNavigate(); // Use the useNavigate hook for navigation
+
+    useEffect(() => {
+        // If the user is already logged in, redirect to the home page
+        if (isLoggedIn) {
+          navigate('/');
+        }
+      }, [isLoggedIn, navigate]);
 
     const handleInputChange = (e) => {
         setCredentials({
@@ -16,11 +24,9 @@ const Login = () => {
 
     const handleLogin = async (event) => {
         event.preventDefault(); // Prevent the default form submission behavior
-    
         try {
             const response = await axios.post('http://localhost:3001/auth/login', credentials);
-            const user = response.data;
-            console.log('User logged in:', user);
+            onLogin(credentials.email);
     
             // Use the navigate function to navigate to the homepage
             navigate('/');
@@ -29,6 +35,7 @@ const Login = () => {
             setLoginError('Invalid email or password. Please try again.');
         }
     };
+
     return (
         <div class="d-flex align-items-center justify-content-center vh-100 text-dark" style={{ backgroundColor: '#FFF7E6'}}>
             <div class="container">
