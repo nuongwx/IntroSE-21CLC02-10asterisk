@@ -17,10 +17,11 @@ const QuestSchema = new mongoose.Schema({
         type: Number,
         default: 0
     },
-    image: {
-        type: String,
-        default: 'https://via.placeholder.com/150'
-    },
+    images: [String],
+    // image: {
+    //     type: String,
+    //     default: 'https://via.placeholder.com/150'
+    // },
     questions: [QuestionSchema],
 
     ratings: [RatingSchema],
@@ -38,6 +39,13 @@ QuestSchema.pre('validate', function (next) {
         return a.order > b.order ? 1 : -1;
     });
     next();
+});
+
+QuestSchema.virtual('image').get(function () {
+    if (Array.isArray(this.images) && this.images.length > 0) {
+        return this.images[0];
+    }
+    return 'https://via.placeholder.com/150';
 });
 
 QuestSchema.virtual('orders', {

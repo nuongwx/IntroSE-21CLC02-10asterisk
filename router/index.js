@@ -1,5 +1,6 @@
 const express = require('express');
 const router = express.Router();
+const cloudinary = require('cloudinary').v2;
 
 const Quest = require('../models/quest');
 const Question = require('../models/question');
@@ -68,6 +69,41 @@ router.delete('/quest/:id', (req, res) => {
         .catch((err) => {
             console.log(err);
         });
+});
+
+router.post('/quest/:id/image', (req, res) => {
+    const file = req.files.image;
+    cloudinary.uploader.upload_stream({ resource_type: 'image' }, (err, result) => {
+        if (err) {
+            console.log(err);
+        }
+        else {
+            Quest.findByIdAndUpdate(req.params.id, { $push: { images: result.secure_url } })
+                .then((result) => {
+                    res.json(result);
+                })
+                .catch((err) => {
+                    console.log(err);
+                });
+        }
+    }).end(file.data);
+});
+
+router.delete('/quest/:id/image/', (req, res) => {
+    Quest.findByIdAndUpdate(req.params.id, { $pull: { images: req.body.image } })
+        .then((result) => {
+            cloudinary.uploader.destroy(req.body.image.split('/').pop().split('.')[0], (err, result) => {
+                if (err) {
+                    console.log(err);
+                }
+            });
+            res.json(result);
+        }
+        )
+        .catch((err) => {
+            console.log(err);
+        }
+        );
 });
 
 // get quest's questions by quest id

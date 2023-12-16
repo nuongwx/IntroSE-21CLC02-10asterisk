@@ -3,6 +3,7 @@ const path = require('path');
 const cors = require('cors');
 const dotenv = require('dotenv').config();
 const morgan = require('morgan');
+const upload = require('express-fileupload');
 
 const PORT = process.env.PORT || 3000;
 
@@ -21,6 +22,8 @@ var app = express();
 app.use(cors());
 app.use(morgan('dev'));
 app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
+app.use(upload());
 
 const indexRouter = require('./router/index');
 const authRouter = require('./router/auth.js');
