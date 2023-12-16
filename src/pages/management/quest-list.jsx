@@ -12,7 +12,7 @@ const QuestList = () => {
         queryKey: ["quest"],
         queryFn: () =>
             axios
-                .get("http://localhost:3000/api/quest/")
+                .get("http://localhost:3001/api/quest/")
                 .then((data) => {
                     console.log(data);
                     return data;
@@ -27,7 +27,7 @@ const QuestList = () => {
     ];
 
     function addQuest() {
-        axios.post("http://localhost:3000/api/quest/", {
+        axios.post("http://localhost:3001/api/quest/", {
             title: "New Quest",
             description: "New Quest Description"
         })

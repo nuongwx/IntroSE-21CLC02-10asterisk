@@ -16,7 +16,7 @@ const QuestEditor = ({ id }) => {
         queryKey: ['questEditor'],
         queryFn: () =>
             axios
-                .get("http://localhost:3000/api/quest/" + id)
+                .get("http://localhost:3001/api/quest/" + id)
                 .then((res) => {
                     return res.data;
                 }),
@@ -95,7 +95,7 @@ const QuestEditor = ({ id }) => {
     }
 
     function deleteQuestion(item) {
-        axios.delete("http://localhost:3000/api/quest/" + id + "/questions/" + item._id).then((res) => {
+        axios.delete("http://localhost:3001/api/quest/" + id + "/questions/" + item._id).then((res) => {
             refetch();
         });
     }
@@ -122,14 +122,14 @@ const QuestEditor = ({ id }) => {
             "title": title,
             "description": description,
             // "city": city,
-            // "duration": duration,
-            // "distance": distance,
+            "duration": duration,
+            "distance": distance,
             "price": price,
-            // "commission": commission,
+            "commission": commission,
         };
         console.log(data);
 
-        axios.put("http://localhost:3000/api/quest/" + id, data).then((res) => {
+        axios.put("http://localhost:3001/api/quest/" + id, data).then((res) => {
             console.log("axios put");
             refetch();
         });
@@ -137,7 +137,32 @@ const QuestEditor = ({ id }) => {
 
     function deleteQuest() {
         console.log("delete quest");
-        axios.delete("http://localhost:3000/api/quest/" + id).then((res) => {
+        axios.delete("http://localhost:3001/api/quest/" + id).then((res) => {
+        });
+    }
+
+    function uploadImage() {
+        var file = document.getElementById("quest-image-upload").files[0];
+        var formData = new FormData();
+        formData.append("image", file);
+        axios.post("http://localhost:3001/api/quest/" + id + "/image", formData, {
+            headers: {
+                'Content-Type': 'multipart/form-data'
+            }
+        }).then((res) => {
+            console.log("axios post");
+            refetch();
+        });
+    }
+
+    function deleteImage(item) {
+        axios.delete("http://localhost:3001/api/quest/" + id + "/image/", {
+            data: {
+                image: item
+            }
+        }).then((res) => {
+            console.log("axios delete");
+            refetch();
         });
     }
 
@@ -231,7 +256,7 @@ const QuestEditor = ({ id }) => {
                         <div className="col-xl">
                             <div className="card mb-4">
                                 <div className="card-header d-flex justify-content-between align-items-center">
-                                    <h5 className="mb-0">Editor</h5>
+                                    <a href="/management" className="btn btn-outline-primary">Back</a>
                                     <div>
                                         <Link to="/management" reloadDocument>
                                             <button type="button" className="btn btn-primary" onClick={saveQuest}>Save</button>
@@ -285,6 +310,26 @@ const QuestEditor = ({ id }) => {
                                             <div className="col-3">
                                                 <label className="col-form-label">Commission</label>
                                                 <input className="form-control" type="number" id="quest-commission" step="0.01" required defaultValue={data.commission} />
+                                            </div>
+                                        </div>
+                                        <div className="row mt-5">
+                                            <div className="col-3" style={{ alignContent: "center" }}>
+                                                <h5 className="card-header">Images</h5>
+                                            </div>
+                                            <div className="col-3" style={{ alignItems: "center", display: "flex" }}>
+                                                {/* <button type="button" className="btn btn-primary" onClick={addImage}>Add</button> */}
+                                                <div class="input-group mb-3">
+                                                    <input type="file" class="form-control" id="quest-image-upload" onInput={uploadImage} />
+                                                    <label class="input-group-text" for="quest-image-upload">Upload</label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div className="row mt-3" style={{ height: "25vh", overflowY: "scroll" }}>
+                                            <div className="table-responsive text-nowrap">
+                                                <Table data={data.images} columns={[
+                                                    { label: "Image", path: "image", content: (item) => <img src={item} style={{ width: "100px" }} /> },
+                                                    { label: "Actions", path: "actions", content: (item) => <><button type="button" className="btn btn-danger" onClick={() => deleteImage(item)}>Delete</button></> }
+                                                ]} onSort={() => { }} sortColumn={{}} />
                                             </div>
                                         </div>
                                         <div className="row mt-5">

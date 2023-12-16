@@ -5,7 +5,7 @@ import axios from "axios";
 const QuestionPopup = ({id}) => {
     const { data, isLoading, error } = useQuery({
         queryKey: ["question"],
-        queryFn: () => axios.get("http://ngwx.mooo.com:8086/api/quest/").then((data) => {
+        queryFn: () => axios.get("http://localhost:3001/api/quest/").then((data) => {
             console.log(data);
             return data;
         }),

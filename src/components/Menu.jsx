@@ -58,7 +58,7 @@ const Menu = () => {
                   </g>
                 </svg> */}
               </span>
-              <span className="app-brand-text demo menu-text fw-bolder ms-2">Sneat</span>
+              <span className="app-brand-text demo menu-text fw-bolder ms-2">Management</span>
             </a>
 
             <a href="javascript:void(0);" className="layout-menu-toggle menu-link text-large ms-auto d-block d-xl-none">
