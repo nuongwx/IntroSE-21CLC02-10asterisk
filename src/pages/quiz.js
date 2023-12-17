@@ -61,24 +61,24 @@ export default function Quiz({questId}) {
                     </div>
                 ) : (
                     location.coordinates.length === 0 ? (
-                <div>
-                    <h3>Enter your location</h3>
-                </div>
-                ) :
-                (
-                <div>
-                    <div className='question-section'>
-                        <div className='question-count'>
-                            <span>Question {currentQuestion + 1}</span>/{questions.length}
+                    <div>
+                        <h3>Enter your location</h3>
+                    </div>
+                    ) :
+                    (
+                        <div>
+                            <div className='question-section'>
+                                <div className='question-count'>
+                                    <span>Question {currentQuestion + 1}</span>/{questions.length}
+                                </div>
+                                <div className='question-text'>{questions[currentQuestion].question}</div>
+                            </div>
+                            <div className='answer-section'>
+                                <input type='text' placeholder='Enter your answer here' id='answer' />
+                                <button onClick={() => handleAnswerOptionClick(document.getElementById('answer').value === questions[currentQuestion].answer)}>Submit</button>
+                            </div>
                         </div>
-                        <div className='question-text'>{questions[currentQuestion].question}</div>
-                    </div>
-                    <div className='answer-section'>
-                        <input type='text' placeholder='Enter your answer here' id='answer' />
-                        <button onClick={() => handleAnswerOptionClick(document.getElementById('answer').value === questions[currentQuestion].answer)}>Submit</button>
-                    </div>
-                </div>
-                )
+                    )
                 )}
             </div>
         </div>

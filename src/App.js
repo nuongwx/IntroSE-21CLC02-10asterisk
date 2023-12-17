@@ -15,7 +15,7 @@ import QuestEditor from './pages/management/quest-editor.jsx';
 function App() {
   const [isLoggedIn, setLoggedIn] = useState(false);
 
-  const handleLogin = (loggedInUsername) => {
+  const handleLogin = () => {
     setLoggedIn(true);
   };
 
@@ -24,7 +24,7 @@ function App() {
   };
   return (
     <QueryClientProvider client={new QueryClient()} >
-       <NavbarComponent isLoggedIn={isLoggedIn} onLogout={handleLogout} />
+       <NavbarComponent isLoggedIn={isLoggedIn} onLogout={handleLogout}/>
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/login" element={

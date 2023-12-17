@@ -36,7 +36,7 @@ const NavbarComponent = ({isLoggedIn, onLogout}) => {
                         { isLoggedIn ? (
                              <li className="nav-item dropdown">
                                 <a className="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                    <b>Logged In Content</b>
+                                    <i className='bi bi-person-fill'></i>
                                 </a>
                                 <ul className="dropdown-menu">
                                     <li><Link to="/profile" className="dropdown-item">Profile</Link></li>

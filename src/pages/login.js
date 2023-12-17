@@ -3,7 +3,7 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { setAuthToken } from '../hooks/auth'
 
-const Login = ({ isLoggedIn, onLogin }) => {
+const Login = ({ isLoggedIn, onLogin, username }) => {
     const [credentials, setCredentials] = useState({ email: '', password: '' });
     const [loginError, setLoginError] = useState('');
     const navigate = useNavigate(); // Use the useNavigate hook for navigation
