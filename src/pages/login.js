@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 
-const Login = () => {
+export default function Login({ setToken }) {
     const [credentials, setCredentials] = useState({ email: '', password: '' });
     const [loginError, setLoginError] = useState('');
     const navigate = useNavigate(); // Use the useNavigate hook for navigation
@@ -21,6 +21,7 @@ const Login = () => {
             const response = await axios.post('http://localhost:3001/auth/login', credentials);
             const user = response.data;
             console.log('User logged in:', user);
+            setToken(user.token); // Save the token to sessionStorage
     
             // Use the navigate function to navigate to the homepage
             navigate('/');
@@ -62,5 +63,3 @@ const Login = () => {
         </div>
     );
 }
-
-export default Login;

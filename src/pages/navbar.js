@@ -1,7 +1,9 @@
 import React from 'react';
-
+import useToken from '../utils/auth';
 
 const NavbarComponent = () => {
+    const { token, setToken } = useToken();
+    console.log('Token:', token);
     return (
         <nav className="navbar navbar-expand-lg navbar-light bg-transparent" style={{ zIndex: 1000, position: 'absolute', width: '100%' }}>
             <div className="container">
