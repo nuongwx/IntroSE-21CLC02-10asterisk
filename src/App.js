@@ -5,6 +5,7 @@ import { QueryClient, QueryClientProvider, useQuery } from '@tanstack/react-quer
 import './styles/App.css';
 import Home from './pages/home';
 import Login from './pages/login';
+import Profile from './pages/profile';
 import QuestList from './pages/management/quest-list.jsx';
 import QuestEditor from './pages/management/quest-editor.jsx';
 
@@ -19,6 +20,7 @@ function App() {
                 <Routes>
                     <Route path="/" element={<><NavbarComponent /><Home /></>} />
                     <Route path="/login" element={<><NavbarComponent /><Login setToken={setToken} /></>} />
+                    <Route path="/profile" element={<><NavbarComponent /><Profile /></>} />
                     <Route path="/management/" element={<QuestList />} />
                     <Route path="/management/:questId" element={<QuestEditor />} />
                     {/* Add other routes here */}
