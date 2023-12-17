@@ -5,6 +5,10 @@ const RatingSchema = new mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User'
     },
+    quest: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Quest'
+    },
     comment: {
         type: String,
         trim: true,

@@ -22,6 +22,10 @@ const UserSchema = new mongoose.Schema({
         default: 'user',
         enum: ['user', 'admin', 'creator', 'pending']
     },
+    image: {
+        type: String,
+        default: 'https://via.placeholder.com/150'
+    },
 });
 
 UserSchema.virtual('orders', {
