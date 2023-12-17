@@ -25,6 +25,6 @@ const OrderSchema = new mongoose.Schema({
 });
 
 // unique user-quest pair
-OrderSchema.index({ user: 1, quest: 1 }, { unique: true });
+// OrderSchema.index({ user: 1, quest: 1 }, { unique: true });
 
 module.exports = mongoose.model('Order', OrderSchema);

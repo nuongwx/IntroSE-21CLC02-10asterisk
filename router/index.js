@@ -192,6 +192,27 @@ router.get('/order', (req, res) => {
         });
 });
 
+router.post('/order', async (req, res) => {
+    const { email, quest } = req.body;
+
+    // add order to user matching email
+    await User.findOne({ email: email }).then(async (res_user) => {
+        if (res_user) {
+            await Quest.findById(quest).then(async (res_quest) => {
+                console.log(res_quest);
+                if (res_quest) {
+                    let order = await Order.create({ user: res_user, quest: res_quest, status: 'pending' })
+                    return res.json(order);
+                } else {
+                    return res.status(400).json({ error: 'Quest not found' });
+                }
+            });
+        } else {
+            return res.status(400).json({ error: 'User not found' });
+        }
+    });
+});
+
 // get order by id
 router.get('/order/:id', (req, res) => {
     Order.findById(req.params.id)
