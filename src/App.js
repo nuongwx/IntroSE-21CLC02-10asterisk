@@ -7,6 +7,7 @@ import Home from './pages/home';
 import Login from './pages/login';
 import NavbarComponent from './pages/navbar';
 import Register from './pages/register';
+import Checkout from './pages/checkout.jsx';
 import ProtectedRoute from './ProtectedRoute.js'
 
 import QuestList from './pages/management/quest-list.jsx';
@@ -46,8 +47,15 @@ function App() {
                         </ProtectedRoute>
                       </>
                     } />
+                    <Route path="/checkout/:questId" element={
+                      <>
+                        <NavbarComponent/>
+                          <Checkout/>
+                      </>
+                    } />
                     <Route path="/management/" element={<QuestList />} />
                     <Route path="/management/:questId" element={<QuestEditor />} />
+
                 </Routes>
             </div>
         </QueryClientProvider>
