@@ -1,11 +1,14 @@
+import React from 'react';
 import { Link } from 'react-router-dom';
-import { removeAuthToken } from '../hooks/auth'
+import useToken from '../utils/auth';
 
+const NavbarComponent = ( { isLoggedIn, onLogout }) => {
+    const { token, setToken } = useToken();
+    console.log('Token:', token);
 
-const NavbarComponent = ({isLoggedIn, onLogout}) => {
     const handleLogout = async () => {
         try {
-            removeAuthToken()
+            setToken()
         } catch (error) {
             // Handle any errors that may occur during logout
             console.error('Logout failed:', error);

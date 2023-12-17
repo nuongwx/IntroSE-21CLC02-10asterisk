@@ -49,7 +49,7 @@ const Home = () => {
         <>
         {/* Hero section */}
         <div className="jumbotron text-white row align-items-center justify-content-start m-0" style={{ height: '75vh', backgroundImage: `url('/Home/Images/Hero background.png')`, backgroundSize: 'cover', width: '100%' }}>
-            <div className="container text-dark px-md-5">
+            <div className="container text-dark px-md-5 text-start">
                 <div className="row w-100">
                     <div className="col-xs-10 col-sm-8 col-md-6 col-lg-4">
                         <h1>Game tour khám phá thành phố</h1>

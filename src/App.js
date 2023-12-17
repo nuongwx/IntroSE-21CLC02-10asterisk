@@ -12,7 +12,10 @@ import ProtectedRoute from './ProtectedRoute.js'
 import QuestList from './pages/management/quest-list.jsx';
 import QuestEditor from './pages/management/quest-editor.jsx';
 
+import useToken from './utils/auth.js';
+
 function App() {
+  const { token, setToken } = useToken();
   const [isLoggedIn, setLoggedIn] = useState(false);
 
   const handleLogin = () => {
@@ -22,27 +25,33 @@ function App() {
   const handleLogout = () => {
     setLoggedIn(false);
   };
-  return (
-    <QueryClientProvider client={new QueryClient()} >
-       <NavbarComponent isLoggedIn={isLoggedIn} onLogout={handleLogout}/>
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/login" element={
-          <ProtectedRoute isAuthenticated={!isLoggedIn}>
-            <Login isLoggedIn={isLoggedIn} onLogin={handleLogin}/>
-          </ProtectedRoute>
-        } />
-        <Route path="/register" element={
-          <ProtectedRoute isAuthenticated={!isLoggedIn}>
-            <Register/>
-          </ProtectedRoute>
-        } />
-        <Route path="/management/" element={<QuestList/>} />
-        <Route path="/management/:questId" element={<QuestEditor />} />
-        {/* Add other routes here */}
-      </Routes>
-      </QueryClientProvider>
-  );
+    return (
+        <QueryClientProvider client={new QueryClient()} >
+            <div className="App">
+                <Routes>
+                    <Route path="/" element={<><NavbarComponent isLoggedIn={isLoggedIn} onLogout={handleLogout}/><Home/></>} />
+                    <Route path="/login" element={
+                      <>
+                        <NavbarComponent/>
+                        <ProtectedRoute isAuthenticated={!isLoggedIn}>
+                          <Login isLoggedIn={isLoggedIn} onLogin={handleLogin} setToken={setToken}/>
+                        </ProtectedRoute>
+                      </>
+                    } />
+                    <Route path="/register" element={
+                      <>
+                        <NavbarComponent/>
+                        <ProtectedRoute isAuthenticated={!isLoggedIn}>
+                          <Register/>
+                        </ProtectedRoute>
+                      </>
+                    } />
+                    <Route path="/management/" element={<QuestList />} />
+                    <Route path="/management/:questId" element={<QuestEditor />} />
+                </Routes>
+            </div>
+        </QueryClientProvider>
+    );
 }
 
 export default App;

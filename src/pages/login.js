@@ -1,9 +1,8 @@
 import React, { useState , useEffect} from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-import { setAuthToken } from '../hooks/auth'
 
-const Login = ({ isLoggedIn, onLogin, username }) => {
+const Login = ({ isLoggedIn, onLogin, username, setToken }) => {
     const [credentials, setCredentials] = useState({ email: '', password: '' });
     const [loginError, setLoginError] = useState('');
     const navigate = useNavigate(); // Use the useNavigate hook for navigation
@@ -26,6 +25,9 @@ const Login = ({ isLoggedIn, onLogin, username }) => {
         event.preventDefault(); // Prevent the default form submission behavior
         try {
             const response = await axios.post('http://localhost:3001/auth/login', credentials);
+            const user = response.data;
+            console.log('User logged in:', user);
+            setToken(user.token); // Save the token to sessionStorage 
             onLogin(credentials.email);
     
             // Use the navigate function to navigate to the homepage
@@ -48,11 +50,11 @@ const Login = ({ isLoggedIn, onLogin, username }) => {
                         <form onSubmit={handleLogin}>
                             <span className="text-danger">{loginError}</span>
                             <div class="form-group my-3">
-                                <label class="Toast" for="formEmail">Email</label>
+                                <label className="Toast" for="formEmail">Email</label>
                                 <input type="email" id="email" name="email" className="form-control" placeholder="Enter email" value={credentials.email} onChange={handleInputChange} required/>
                             </div>
                             <div class="form-group my-3">
-                                <label class="Toast" for="formPassword">Mật khẩu</label>
+                                <label className="" for="formPassword">Mật khẩu</label>
                                 <input type="password" id="password" name="password" className="form-control" value={credentials.password} onChange={handleInputChange} placeholder="Mật khẩu" required/>
                             </div>
                             <a href="/" className="text-primary text-decoration-none">Quên mật khẩu</a>
