@@ -49,7 +49,7 @@ const Home = () => {
         <>
         {/* Hero section */}
         <div className="jumbotron text-white row align-items-center justify-content-start m-0" style={{ height: '75vh', backgroundImage: `url('/Home/Images/Hero background.png')`, backgroundSize: 'cover', width: '100%' }}>
-            <div className="container text-dark px-md-5">
+            <div className="container text-dark px-md-5 text-start">
                 <div className="row w-100">
                     <div className="col-xs-10 col-sm-8 col-md-6 col-lg-4">
                         <h1>Game tour khám phá thành phố</h1>
@@ -62,43 +62,43 @@ const Home = () => {
         </div>
 
         {/* Introduction */}
-        <div class="container mt-5">
-            <h2 class="text-center">Vì sao Geoquiz được yêu thích</h2>
-            <p class="text-center"><b>Chúng tôi cung cấp các Quest là các tour du lịch tự túc đã được game hoá với các thử thách thú vị trong chuyến đi</b></p>
-            <div class="row justify-content-center my-5">
-                <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3 gap-3">
-                    <div class="card mb-4 border-0">
-                        <img class="card-img-top" src="/Home/Images/Safety.svg" alt="Safety" width="50" height="50" />
-                        <div class="card-body text-center">
-                            <h5 class="card-title">An toàn & riêng tư</h5>
-                            <p class="card-text">Đi riêng cùng bạn bè và gia đình. Thích hợp với thời kì covid-19</p>
+        <div className="container mt-5">
+            <h2 className="text-center">Vì sao Geoquiz được yêu thích</h2>
+            <p className="text-center"><b>Chúng tôi cung cấp các Quest là các tour du lịch tự túc đã được game hoá với các thử thách thú vị trong chuyến đi</b></p>
+            <div className="row justify-content-center my-5">
+                <div className="col-xs-12 col-sm-6 col-md-4 col-lg-3 gap-3">
+                    <div className="card mb-4 border-0">
+                        <img className="card-img-top" src="/Home/Images/Safety.svg" alt="Safety" width="50" height="50" />
+                        <div className="card-body text-center">
+                            <h5 className="card-title">An toàn & riêng tư</h5>
+                            <p className="card-text">Đi riêng cùng bạn bè và gia đình. Thích hợp với thời kì covid-19</p>
                         </div>
                     </div>
                 </div>
-                <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3 gap-3">
-                    <div class="card mb-4 border-0">
-                        <img class="card-img-top" src="/Home/Images/Payment.svg" alt="Payment" width="50" height="50" />
-                        <div class="card-body text-center">
-                            <h5 class="card-title">Thanh toán tức thời</h5>
-                            <p class="card-text">Không cần đặt trước. Đặt vào phút cuối và mở khoá Quest ngay lập tức</p>
+                <div className="col-xs-12 col-sm-6 col-md-4 col-lg-3 gap-3">
+                    <div className="card mb-4 border-0">
+                        <img className="card-img-top" src="/Home/Images/Payment.svg" alt="Payment" width="50" height="50" />
+                        <div className="card-body text-center">
+                            <h5 className="card-title">Thanh toán tức thời</h5>
+                            <p className="card-text">Không cần đặt trước. Đặt vào phút cuối và mở khoá Quest ngay lập tức</p>
                         </div>
                     </div>
                 </div>
-                <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3 gap-3">
-                    <div class="card mb-4 border-0">
-                        <img class="card-img-top" src="/Home/Images/Time.svg" alt="Time" width="50" height="50" />
-                        <div class="card-body text-center">
-                            <h5 class="card-title">Thời gian linh hoạt</h5>
-                            <p class="card-text">Bất cứ khi nào bạn muốn,chỉ cần đi đến điểm xuất phát</p>
+                <div className="col-xs-12 col-sm-6 col-md-4 col-lg-3 gap-3">
+                    <div className="card mb-4 border-0">
+                        <img className="card-img-top" src="/Home/Images/Time.svg" alt="Time" width="50" height="50" />
+                        <div className="card-body text-center">
+                            <h5 className="card-title">Thời gian linh hoạt</h5>
+                            <p className="card-text">Bất cứ khi nào bạn muốn,chỉ cần đi đến điểm xuất phát</p>
                         </div>
                     </div>
                 </div>
-                <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3 gap-3">
-                    <div class="card mb-4 border-0">
-                        <img class="card-img-top" src="/Home/Images/Experience.svg" alt="Experience" width="50" height="50" />
-                        <div class="card-body text-center">
-                            <h5 class="card-title">Trải nghiệm vui lạ</h5>
-                            <p class="card-text">Hoạt động nhập vai ngộ nghĩnh với các thử thách lý thú trong đời thực</p>
+                <div className="col-xs-12 col-sm-6 col-md-4 col-lg-3 gap-3">
+                    <div className="card mb-4 border-0">
+                        <img className="card-img-top" src="/Home/Images/Experience.svg" alt="Experience" width="50" height="50" />
+                        <div className="card-body text-center">
+                            <h5 className="card-title">Trải nghiệm vui lạ</h5>
+                            <p className="card-text">Hoạt động nhập vai ngộ nghĩnh với các thử thách lý thú trong đời thực</p>
                         </div>
                     </div>
                 </div>
@@ -116,10 +116,10 @@ const Home = () => {
                             <img src={quest.image} className="card-img-top" alt={quest.title} style={{ borderRadius: '2rem' }} />
                             <div className="card-body p-0">
                             <p className="m-0">
-                                <RatingStars rating={quest.averageRating} /> {quest.averageRating} ({quest.ratings.length})
+                                <RatingStars rating={quest.averageRating} /> {quest.averageRating} ({quest.ratings.length}) - {quest.location}
                             </p>
                             <h5 style={{ textTransform: 'capitalize' }} className="my-1">{quest.title}</h5>
-                            <p>{quest.price}đ/người</p>
+                            <p>{quest.price}đ/người - {quest.duration} phút</p>
                             </div>
                         </div>
                     </Link>
