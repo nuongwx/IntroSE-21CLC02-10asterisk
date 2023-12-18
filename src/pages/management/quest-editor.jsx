@@ -143,6 +143,7 @@ const QuestEditor = ({ id }) => {
 
     function uploadImage() {
         var file = document.getElementById("quest-image-upload").files[0];
+        if(!file) return;
         var formData = new FormData();
         formData.append("image", file);
         axios.post("http://localhost:3001/api/quest/" + id + "/image", formData, {
@@ -151,6 +152,7 @@ const QuestEditor = ({ id }) => {
             }
         }).then((res) => {
             console.log("axios post");
+            document.getElementById("quest-image-upload").value = "";
             refetch();
         });
     }
