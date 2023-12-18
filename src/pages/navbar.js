@@ -16,7 +16,9 @@ const NavbarComponent = ( { isLoggedIn, onLogout }) => {
     };
 
     return (
-        <nav className="navbar navbar-expand-lg navbar-light bg-transparent" style={{ zIndex: 1000, position: 'absolute', width: '100%' }}>
+        <nav className="navbar navbar-expand-lg navbar-light bg-transparent">
+            {/* absolute dùng được mỗi cho trang home thôi nên tạm thời để đây */}
+            {/* style={{ zIndex: 1000, position: 'absolute', width: '100%' }}> */}
             <div className="container">
                 <Link to="/" className="navbar-brand text-warning">
                     <img src="/logo.svg" width="30" height="30" className="d-inline-block align-top mr-lg-3" alt="Logo" />
@@ -34,6 +36,14 @@ const NavbarComponent = ( { isLoggedIn, onLogout }) => {
                             <Link to="#" className="nav-link"><b>Tạo câu chuyện</b></Link>
                         </li>
                         <li className="nav-item d-flex align-items-center">
+                            {token ?
+                                <a href="/profile" className="nav-link mx-lg-3">
+                                    <button className="btn btn-outline-warning rounded-pill"><b>Trang cá nhân</b></button>
+                                </a>
+                                : <a href="/login" className="nav-link mx-lg-3">
+                                    <button className="btn btn-outline-warning rounded-pill"><b>Đăng nhập</b></button>
+                                </a>
+                            }
                             <Link to="/help" className="nav-link"><b>Trợ giúp</b></Link>
                         </li>
                         { isLoggedIn ? (
@@ -58,7 +68,7 @@ const NavbarComponent = ( { isLoggedIn, onLogout }) => {
                     </ul>
                 </div>
             </div>
-        </nav>
+        </nav >
     );
 }
 
