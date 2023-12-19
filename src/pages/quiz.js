@@ -10,7 +10,7 @@ export default function Quiz() {
     queryKey: ['questions', questId],
     queryFn: () =>
       axios
-        .get(`http://localhost:3001/api/quest/${questId}/questions`)
+        .get(`http://localhost:3001/api/quest/${questId}`)
         .then((response) => response.data),
   });
 
