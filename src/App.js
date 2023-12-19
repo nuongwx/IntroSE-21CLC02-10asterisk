@@ -7,6 +7,7 @@ import Home from './pages/home';
 import Login from './pages/login';
 import NavbarComponent from './pages/navbar';
 import Register from './pages/register';
+import Quiz from './pages/quiz'
 import Checkout from './pages/checkout.jsx';
 import ProtectedRoute from './ProtectedRoute.js'
 
@@ -28,7 +29,7 @@ function App() {
   };
     return (
         <QueryClientProvider client={new QueryClient()} >
-            <div className="App">
+            <div className="App bg-light">
                 <Routes>
                     <Route path="/" element={<><NavbarComponent isLoggedIn={isLoggedIn} onLogout={handleLogout}/><Home/></>} />
                     <Route path="/login" element={
@@ -53,6 +54,7 @@ function App() {
                           <Checkout/>
                       </>
                     } />
+                    <Route path="/quest/:questId" element={<><NavbarComponent/><Quiz /></>} />
                     <Route path="/management/" element={<QuestList />} />
                     <Route path="/management/:questId" element={<QuestEditor />} />
 

@@ -1,91 +1,108 @@
-import { useState } from 'react';
-import axios from "axios";
-
+import { useState, useEffect } from 'react';
+import { useParams } from 'react-router-dom';
+import axios from 'axios';
 import { useQuery } from '@tanstack/react-query';
+import Map from '../components/Map';
 
-export default function Quiz({questId}) {
-    const { isPending, error, data: questions, isFetching } = useQuery({
-        queryKey: ['questions'],
-        queryFn: () =>
-            axios
-                .get('http://localhost:3001/api/quest/' + questId + '/questions')
-                .then(function (response) {
-                    console.log(response);
-                    return response.data;
-                }
-                )
-    })
+export default function Quiz() {
+  const { questId } = useParams();
+  const { isPending, error, data, isFetching } = useQuery({
+    queryKey: ['questions', questId],
+    queryFn: () =>
+      axios
+        .get(`http://localhost:3001/api/quest/${questId}/questions`)
+        .then((response) => response.data),
+  });
 
-    const [currentQuestion, setCurrentQuestion] = useState(0);
-    const [showScore, setShowScore] = useState(false);
-    const [location, setLocation] = useState({ coordinates: [] }); // [longitude, latitude]
-    const [score, setScore] = useState(0);
+  const [currentQuestion, setCurrentQuestion] = useState(0);
+  const [showScore, setShowScore] = useState(false);
+  const [score, setScore] = useState(0);
+  const [answer, setAnswer] = useState('');
+  const [userLocation, setUserLocation] = useState(null); // Define userLocation state
 
-    const handleAnswerOptionClick = (isCorrect) => {
-        if (isCorrect) {
-            setScore(score + 1);
+  // Function to get user's location
+  const getUserLocation = () => {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(
+        (position) => {
+          const { latitude, longitude } = position.coords;
+          setUserLocation({ latitude, longitude });
+        },
+        (error) => {
+          console.error('Error getting user location:', error.message);
         }
-        else {
-            alert("Wrong answer!");
-            return;
-        }
-        document.getElementById('answer').value = '';
-        const nextQuestion = currentQuestion + 1;
-        if (nextQuestion < questions.length) {
-            setCurrentQuestion(nextQuestion);
-        } else {
-            setShowScore(true);
-        }
-    };
+      );
+    } else {
+      console.error('Geolocation is not supported by this browser.');
+    }
+  };
 
-    const locationOK = () => {
-        setLocation(questions[currentQuestion].location)
+  // Call getUserLocation when the component mounts
+  useEffect(() => {
+    getUserLocation();
+  }, []);
+
+  console.log('userLocation:', userLocation); // Log the user's location
+
+  if (isPending || isFetching) return 'Loading...';
+
+  if (error) return `An error has occurred: ${error.message}`;
+
+  // Answer handler function
+  const handleAnswerOptionClick = (isCorrect) => {
+    setAnswer('');
+
+    if (isCorrect) {
+      setScore((prevScore) => prevScore + 1);
+    } else {
+      alert('Wrong answer!');
+      return;
     }
 
-    const locationClear = () => {
-        setLocation({ coordinates: [] });
+    const nextQuestion = currentQuestion + 1;
+    if (nextQuestion < data.questions.length) {
+      setCurrentQuestion(nextQuestion);
+    } else {
+      setShowScore(true);
     }
+  };
 
-    if (isPending) return 'Loading...'
-
-    if (error) return 'An error has occurred: ' + error.message
-
-    return (
-        <div>
-            <button onClick={() => locationOK()}>OK</button>
-            <button onClick={() => locationClear()}>Clear</button>
-            <div className='app'>
-                {showScore ? (
-                    <div className='score-section'>
-                        You scored {score} out of {questions.length}
-                    </div>
-                ) : (
-                    location.coordinates.length === 0 ? (
-                    <div>
-                        <h3>Enter your location</h3>
-                    </div>
-                    ) :
-                    (
-                        <div>
-                            <div className='question-section'>
-                                <div className='question-count'>
-                                    <span>Question {currentQuestion + 1}</span>/{questions.length}
-                                </div>
-                                <div className='question-text'>{questions[currentQuestion].question}</div>
-                            </div>
-                            <div className='answer-section'>
-                                <input type='text' placeholder='Enter your answer here' id='answer' />
-                                <button onClick={() => handleAnswerOptionClick(document.getElementById('answer').value === questions[currentQuestion].answer)}>Submit</button>
-                            </div>
-                        </div>
-                    )
-                )}
-            </div>
+  return (
+    <div className='d-flex justify-content-center align-items-center vh-100 pt-5'>
+      {showScore ? (
+        <div className="score-section">
+          You scored {score} out of {data.questions.length}
         </div>
-    )
-
-
-    // http://localhost:3001/api/quest/65714cfc8765b8d95c173a96/questions
-
-
+      ) : (
+        <div style={{ width: '75vw' }}>
+          {data.questions.length > 0 ? (
+            <div className="card">
+              <div className="card-body">
+                <h3 className="card-title">Question {currentQuestion + 1} of {data.questions.length}</h3>
+                <p className="card-text">{data.questions[currentQuestion].question}</p>
+                <div className="mb-3">
+                  <label htmlFor="userAnswer" className="form-label">Your Answer:</label>
+                  <input
+                    type="text"
+                    className="form-control"
+                    id="userAnswer"
+                    value={answer}
+                    onChange={(e) => setAnswer(e.target.value)}
+                    style={{ height: '5rem' }}
+                  />
+                </div>
+                <button className="btn btn-primary" onClick={() => handleAnswerOptionClick(answer === data.questions[currentQuestion].answer)}>
+                  Submit
+                </button>
+                {/* Render Map component with user's location */}
+                <Map userLocation={userLocation} destination={data.questions[currentQuestion].location.coordinates} />
+              </div>
+            </div>
+          ) : (
+            <p>No questions available.</p>
+          )}
+        </div>
+      )}
+    </div>
+  );
 }

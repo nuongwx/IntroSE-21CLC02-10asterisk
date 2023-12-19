@@ -110,7 +110,7 @@ const Home = () => {
             <h2 className="text-center">Trải nghiệm hot nhất</h2>
             <div className="row my-5">
                 {topQuests.map((quest) => (
-                <div key={quest.id} className="col-xs-12 col-sm-6 col-md-4 col-lg-3 gap-3">
+                <div key={quest.id} className="col-xs-12 col-sm-6 col-md-4 col-lg-3 gap-3 text-start">
                     <Link to={`/quest/${quest.id}`} className="text-decoration-none text-dark">
                         <div className="card mb-4 border-0" style={{ borderRadius: '2rem', overflow: 'hidden' }}>
                             <img src={quest.image} className="card-img-top" alt={quest.title} style={{ borderRadius: '2rem' }} />

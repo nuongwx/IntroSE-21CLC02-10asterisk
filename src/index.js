@@ -12,6 +12,8 @@ import './pages/management/assets/vendor/css/core.css';
 import './pages/management/assets/vendor/css/theme-default.css';
 import './pages/management/assets/css/demo.css';
 import './pages/management/assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.css';
+import 'mapbox-gl/dist/mapbox-gl.css';
+import ReactMapGL from 'react-map-gl';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
