@@ -11,7 +11,7 @@ import Quest from './pages/quest';
 import Quiz from './pages/quiz'
 import Checkout from './pages/checkout.jsx';
 import ProtectedRoute from './ProtectedRoute.js'
-
+import Profile from './pages/profile';
 import QuestList from './pages/management/quest-list.jsx';
 import QuestEditor from './pages/management/quest-editor.jsx';
 
@@ -46,6 +46,14 @@ function App() {
                         <NavbarComponent/>
                         <ProtectedRoute isAuthenticated={!isLoggedIn}>
                           <Register/>
+                        </ProtectedRoute>
+                      </>
+                    } />
+                    <Route path="/profile" element={
+                      <>
+                        <NavbarComponent/>
+                        <ProtectedRoute isAuthenticated={!isLoggedIn}>
+                          <Profile/>
                         </ProtectedRoute>
                       </>
                     } />
