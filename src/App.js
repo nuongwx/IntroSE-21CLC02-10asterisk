@@ -30,7 +30,7 @@ function App() {
     };
     return (
         <QueryClientProvider client={new QueryClient()} >
-            <div className="App bg-light">
+            <div className="App bg-light text-dark">
                 <Routes>
                     <Route path="/" element={<><NavbarComponent isLoggedIn={isLoggedIn} onLogout={handleLogout} /><Home /></>} />
                     <Route path="/login" element={
