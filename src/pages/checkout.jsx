@@ -75,7 +75,7 @@ export default function Checkout() {
                     <div className="row mt-4">
                         <div className="col fw-semibold">
                             <span>Checkout </span>
-                            <i class="fa-solid fa-chevron-right mx-2"></i>
+                            <i className="fa-solid fa-chevron-right mx-2"></i>
                             <span> Payment</span>
                         </div>
                     </div>
@@ -116,18 +116,18 @@ export default function Checkout() {
                                 </div>
                                 <div className="d-flex flex-column">
                                     <div className="d-flex align-items-center gap-3" style={{ marginBottom: "10px", maxWidth: "260px" }}>
-                                        <input type="radio" name="payment-method" id="credit-card" autocomplete="off" />
-                                        <label className="fw-bold" for="credit-card">Credit Card</label>
+                                        <input type="radio" name="payment-method" id="credit-card" autoComplete="off" />
+                                        <label className="fw-bold" htmlFor="credit-card">Credit Card</label>
                                         <i className="bi bi-credit-card"></i>
                                     </div>
                                     <div className="d-flex align-items-center gap-3" style={{ marginBottom: "10px", maxWidth: "260px" }}>
-                                        <input type="radio" name="payment-method" id="paypal" autocomplete="off" />
-                                        <label className="fw-bold" for="paypal">PayPal</label>
+                                        <input type="radio" name="payment-method" id="paypal" autoComplete="off" />
+                                        <label className="fw-bold" htmlFor="paypal">PayPal</label>
                                         <i className="bi bi-paypal"></i>
                                     </div>
                                     <div className="d-flex align-items-center gap-3" style={{ marginBottom: "10px", maxWidth: "260px" }}>
-                                        <input type="radio" name="payment-method" id="bank-transfer" autocomplete="off" />
-                                        <label className="fw-bold" for="bank-transfer">Bank Transfer</label>
+                                        <input type="radio" name="payment-method" id="bank-transfer" autoComplete="off" />
+                                        <label className="fw-bold" htmlFor="bank-transfer">Bank Transfer</label>
                                         <i className="bi bi-bank2"></i>
                                     </div>
                                 </div>
@@ -143,9 +143,9 @@ export default function Checkout() {
                     <div style={{ position: "sticky", top: "30px", border: "1px solid #f1f1f1", borderRadius: "10px", padding: "20px 20px 20px", margin: "5px" }}>
                         <div className="d-flex mb-4 pb-2 gap-3">
                             <div className="d-flex">
-                                <img src={data.data.image} />
+                                <img src={data.data.image} alt={data.data.title} style={{ width: "100%", height: "100px", borderRadius: "10px" }} />
                             </div>
-                            <div className="align-self-center">
+                            <div className="align-self-center" style={{textAlign: "start"}}>
                                 <div className="d-flex flex-row align-items-center gap-3">
                                     <div className="fw-bold">{data.data.averageRating}</div>
                                 </div>
@@ -154,11 +154,7 @@ export default function Checkout() {
                             </div>
                         </div>
                         <div className="d-flex mb-lg-2">
-                            <span className="me-auto">Quantity:</span>
-                            <span>1</span>
-                        </div>
-                        <div className="d-flex mb-lg-2">
-                            <span className="me-auto">Subtotal:</span>
+                            <span className="me-auto">Price:</span>
                             <span>{data.data.price}</span>
                         </div>
                         <div className="d-flex fw-bold fs-5">
@@ -178,7 +174,7 @@ export default function Checkout() {
                             </div>
                         </div>
                         <hr />
-                        <div class="mt-4 gap-3">
+                        <div className="mt-4 gap-3">
                             <i>By proceeding with payment, you agree to our <a href="" target="_blank">Terms &amp; Conditions</a>.
                             </i>
                         </div>

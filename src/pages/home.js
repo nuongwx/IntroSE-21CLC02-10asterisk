@@ -113,7 +113,7 @@ const Home = () => {
                 <div key={quest.id} className="col-xs-12 col-sm-6 col-md-4 col-lg-3 gap-3 text-start">
                     <Link to={`/quest/${quest.id}`} className="text-decoration-none text-dark">
                         <div className="card mb-4 border-0" style={{ borderRadius: '2rem', overflow: 'hidden' }}>
-                            <img src={quest.image} className="card-img-top" alt={quest.title} style={{ borderRadius: '2rem' }} />
+                            <img src={quest.image} className="card-img-top" alt={quest.title} style={{ borderRadius: '2rem', height: '250px'}} />
                             <div className="card-body p-0">
                             <p className="m-0">
                                 <RatingStars rating={quest.averageRating} /> {quest.averageRating} ({quest.ratings.length}) - {quest.location}
@@ -127,7 +127,8 @@ const Home = () => {
                 ))}
             </div>
             <div className="row justify-content-center">
-                <button className="btn btn-outline-primary text-center rounded-pill w-auto">Khám phá thêm</button>
+                {/* <button className="btn btn-outline-primary text-center rounded-pill w-auto">Khám phá thêm</button> */}
+                <Link to="/explore" className="btn btn-outline-primary text-center rounded-pill w-auto">Khám phá thêm</Link>
             </div>
         </div>
 

@@ -37,7 +37,7 @@ const NavbarComponent = ({ isLoggedIn, onLogout }) => {
                         </li>
                         <li className="nav-item d-flex align-items-center">
                             {token ?
-                                <li className="nav-item dropdown">
+                                <ul className="nav-item dropdown">
                                     <a className="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                         <i className='bi bi-person-fill'></i>
                                     </a>
@@ -46,12 +46,12 @@ const NavbarComponent = ({ isLoggedIn, onLogout }) => {
                                         <li><hr className="dropdown-divider" /></li>
                                         <button onClick={event => { removeToken(); }} className="dropdown-item">Logout</button>
                                     </ul>
-                                </li>
+                                </ul>
                                 : <a href="/login" className="nav-link mx-lg-3">
                                     <button className="btn btn-outline-warning rounded-pill"><b>Đăng nhập</b></button>
                                 </a>
                             }
-                            <Link to="/help" className="nav-link"><b>Trợ giúp</b></Link>
+
                         </li>
                         {/* {isLoggedIn ? (
                             <li className="nav-item dropdown">
