@@ -35,17 +35,6 @@ const NavbarComponent = ( { isLoggedIn, onLogout }) => {
                         <li className="nav-item d-flex align-items-center">
                             <Link to="#" className="nav-link"><b>Tạo câu chuyện</b></Link>
                         </li>
-                        <li className="nav-item d-flex align-items-center">
-                            {token ?
-                                <a href="/profile" className="nav-link mx-lg-3">
-                                    <button className="btn btn-outline-warning rounded-pill"><b>Trang cá nhân</b></button>
-                                </a>
-                                : <a href="/login" className="nav-link mx-lg-3">
-                                    <button className="btn btn-outline-warning rounded-pill"><b>Đăng nhập</b></button>
-                                </a>
-                            }
-                            <Link to="/help" className="nav-link"><b>Trợ giúp</b></Link>
-                        </li>
                         { isLoggedIn ? (
                              <li className="nav-item dropdown">
                                 <a className="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">

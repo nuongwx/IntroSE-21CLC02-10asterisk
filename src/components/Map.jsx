@@ -16,7 +16,7 @@ const Map = ({ userLocation, destination }) => {
       const getRoute = async () => {
         try {
           const response = await fetch(
-            `https://api.mapbox.com/directions/v5/mapbox/walking/${userLocation.longitude},${userLocation.latitude};106.68250385310697,10.76295153043293?steps=true&geometries=geojson&access_token=pk.eyJ1IjoibnZraW0iLCJhIjoiY2xxYjR6cm9yMDE5dTJvdGs5YTRpOXliNiJ9.dn85UZHYAX91O29JqzqbgA`
+            `https://api.mapbox.com/directions/v5/mapbox/walking/${userLocation.longitude},${userLocation.latitude};${destination[0]},${destination[1]}?steps=true&geometries=geojson&access_token=pk.eyJ1IjoibnZraW0iLCJhIjoiY2xxYjR6cm9yMDE5dTJvdGs5YTRpOXliNiJ9.dn85UZHYAX91O29JqzqbgA`
           );
 
           if (!response.ok) {
@@ -84,7 +84,6 @@ const Map = ({ userLocation, destination }) => {
 
       {/* Marker for destination */}
       <Marker latitude={destination[1]} longitude={destination[0]} offsetLeft={-20} offsetTop={30}>
-        <div>Hello</div>
       </Marker>
 
       <Source id="routeSource" type="geojson" data={geojson}>

@@ -4,8 +4,10 @@ import axios from "axios";
 import { useParams } from "react-router-dom";
 
 export default function Checkout() {
-
     const { questId } = useParams();
+    const urlParams = new URLSearchParams(window.location.search);
+    const quantity = urlParams.get('quantity');
+    console.log(quantity)
     const { isLoading, error, data } = useQuery({
         queryKey: ["quest", questId],
         queryFn: () => axios.get(`http://localhost:3001/api/quest/${questId}`),
@@ -155,15 +157,15 @@ export default function Checkout() {
                         </div>
                         <div className="d-flex mb-lg-2">
                             <span className="me-auto">Quantity:</span>
-                            <span>1</span>
+                            <span>{quantity}</span>
                         </div>
                         <div className="d-flex mb-lg-2">
                             <span className="me-auto">Subtotal:</span>
-                            <span>{data.data.price}</span>
+                            <span>{(data.data.price * quantity).toLocaleString()}</span>
                         </div>
                         <div className="d-flex fw-bold fs-5">
                             <span className="me-auto">Total:</span>
-                            <span>{data.data.price}</span>
+                            <span>{(data.data.price * quantity).toLocaleString()}</span>
                         </div>
                         <hr />
                         <div className="mt-4 gap-3" style={{ display: "flex", flexDirection: "column" }}>

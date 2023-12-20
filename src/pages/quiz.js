@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import { useQuery } from '@tanstack/react-query';
@@ -19,6 +19,8 @@ export default function Quiz() {
   const [score, setScore] = useState(0);
   const [answer, setAnswer] = useState('');
   const [userLocation, setUserLocation] = useState(null); // Define userLocation state
+
+  console.log(data)
 
   // Function to get user's location
   const getUserLocation = () => {
@@ -54,13 +56,10 @@ export default function Quiz() {
 
     if (isCorrect) {
       setScore((prevScore) => prevScore + 1);
-    } else {
-      alert('Wrong answer!');
-      return;
     }
 
     const nextQuestion = currentQuestion + 1;
-    if (nextQuestion < data.questions.length) {
+    if (nextQuestion < data.length) {
       setCurrentQuestion(nextQuestion);
     } else {
       setShowScore(true);
@@ -70,16 +69,18 @@ export default function Quiz() {
   return (
     <div className='d-flex justify-content-center align-items-center vh-100 pt-5'>
       {showScore ? (
-        <div className="score-section">
-          You scored {score} out of {data.questions.length}
-        </div>
+        <h1 className="score-section">
+          Your score is <span className='text-danger' style={{ fontSize: '3rem' }}>{score}/{data.length}</span>
+        </h1>
+        
+        
       ) : (
         <div style={{ width: '75vw' }}>
-          {data.questions.length > 0 ? (
+          {data.length > 0 ? (
             <div className="card">
               <div className="card-body">
-                <h3 className="card-title">Question {currentQuestion + 1} of {data.questions.length}</h3>
-                <p className="card-text">{data.questions[currentQuestion].question}</p>
+                <h3 className="card-title">Question {currentQuestion + 1} of {data.length}</h3>
+                <p className="card-text">{data[currentQuestion].question}</p>
                 <div className="mb-3">
                   <label htmlFor="userAnswer" className="form-label">Your Answer:</label>
                   <input
@@ -91,11 +92,11 @@ export default function Quiz() {
                     style={{ height: '5rem' }}
                   />
                 </div>
-                <button className="btn btn-primary" onClick={() => handleAnswerOptionClick(answer === data.questions[currentQuestion].answer)}>
+                <button className="btn btn-primary" onClick={() => handleAnswerOptionClick(answer === data[currentQuestion].answer)}>
                   Submit
                 </button>
                 {/* Render Map component with user's location */}
-                <Map userLocation={userLocation} destination={data.questions[currentQuestion].location.coordinates} />
+                <Map userLocation={userLocation} destination={data[currentQuestion].location.coordinates} />
               </div>
             </div>
           ) : (

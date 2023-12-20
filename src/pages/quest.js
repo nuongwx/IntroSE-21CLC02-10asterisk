@@ -141,6 +141,9 @@ const Quest = () => {
                                 <p className='m-0'>Tổng tiền</p>
                                 <p className='m-0'>{total.toLocaleString()}đ</p>
                             </div>
+                            <Link to={`/checkout/${questId}?quantity=${quantity}`}>
+                                <button className='btn rounded-pill bg-danger text-white mb-3'>Đặt ngay</button>
+                            </Link>
                         </div>
                     </div>
                 </div>
