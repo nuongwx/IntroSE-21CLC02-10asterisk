@@ -33,7 +33,7 @@ const Login = ({ isLoggedIn, onLogin, username, setToken }) => {
             onLogin(credentials.email);
     
             // Use the navigate function to navigate to the homepage
-            navigate('/');
+            navigate('/', { replace: true });
         } catch (error) {
             console.error('Login failed:', error.message);
             setLoginError('Invalid email or password. Please try again.');

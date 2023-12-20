@@ -36,7 +36,7 @@ const NavbarComponent = ({ isLoggedIn, onLogout }) => {
                             <Link to="#" className="nav-link text-dark"><b>Tạo câu chuyện</b></Link>
                         </li>
                         <li className="nav-item d-flex align-items-center">
-//                             {token ?
+{/* //                             {token ?
 //                                 <ul className="nav-item dropdown">
 //                                     <a className="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
 //                                         <i className='bi bi-person-fill'></i>
@@ -52,7 +52,7 @@ const NavbarComponent = ({ isLoggedIn, onLogout }) => {
 //                                 </a>
 //                             }
 
-//                             <Link to="/help" className="nav-link text-dark"><b>Trợ giúp</b></Link>
+//                             <Link to="/help" className="nav-link text-dark"><b>Trợ giúp</b></Link> */}
                             {token ? (
                                 <>
                                     <a href="/profile" className="nav-link mx-lg-3">

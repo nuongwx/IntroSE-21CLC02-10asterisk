@@ -122,7 +122,7 @@ const Home = () => {
                             <h5 style={{ textTransform: 'capitalize' }} className="my-1">{quest.title}</h5>
                             <p>{quest.price}đ/người - {quest.duration} phút</p>
                             
-//                     <div key={quest.id} className="col-xs-12 col-sm-6 col-md-4 col-lg-3 gap-3 text-start">
+{/* //                     <div key={quest.id} className="col-xs-12 col-sm-6 col-md-4 col-lg-3 gap-3 text-start">
 //                         <Link to={`/quest/${quest.id}`} className="text-decoration-none text-dark">
 //                             <div className="card h-100 mb-4 border-0 shadow-none" style={{ borderRadius: '2rem', overflow: 'hidden', display: 'flex', flexDirection: 'column' }}>
 //                                 <img src={quest.image} className="card-img-top" alt={quest.title} style={{ borderRadius: '2rem', width: '100%', aspectRatio: '1/1', objectFit: 'cover' }} />
@@ -133,8 +133,8 @@ const Home = () => {
 //                                         </p>
 //                                         <h5 style={{ textTransform: 'capitalize' }} className="my-1">{quest.title}</h5>
 //                                     </div>
-//                                     <p>{quest.price}đ/người - {quest.duration} phút</p>
-//                                 </div>
+//                                     <p>{quest.price}đ/người - {quest.duration} phút</p> */}
+                                </div>
 
                             </div>
                         </Link>

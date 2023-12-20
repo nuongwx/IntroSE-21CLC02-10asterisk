@@ -23,34 +23,24 @@ export default function Quiz() {
     const [userLocation, setUserLocation] = useState(null); // Define userLocation state
 
 
-//     // Function to get user's location
-//     const getUserLocation = () => {
-//         if (navigator.geolocation) {
-//             navigator.geolocation.getCurrentPosition(
-//                 (position) => {
-//                     const { latitude, longitude } = position.coords;
-//                     setUserLocation({ latitude, longitude });
-//                 },
-//                 (error) => {
-//                     console.error('Error getting user location:', error.message);
-//                 }
-//             );
-//         } else {
-//             console.error('Geolocation is not supported by this browser.');
-  console.log(data)
+    //     // Function to get user's location
 
-  // Function to get user's location
-  const getUserLocation = () => {
-    if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(
-        (position) => {
-          const { latitude, longitude } = position.coords;
-          setUserLocation({ latitude, longitude });
-        },
-        (error) => {
-          console.error('Error getting user location:', error.message);
+    const getUserLocation = () => {
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(
+                (position) => {
+                    const { latitude, longitude } = position.coords;
+                    setUserLocation({ latitude, longitude });
+                },
+                (error) => {
+                    console.error('Error getting user location:', error.message);
+                }
+            );
+        } else {
+            console.error('Geolocation is not supported by this browser.');
         }
     };
+
 
     // Call getUserLocation when the component mounts
     useEffect(() => {
@@ -146,7 +136,7 @@ export default function Quiz() {
                     )}
                 </div>
             )}
-
+            {/* 
 //     if (isCorrect) {
 //       setScore((prevScore) => prevScore + 1);
 //     }
@@ -188,13 +178,12 @@ export default function Quiz() {
 //                 <button className="btn btn-primary" onClick={() => handleAnswerOptionClick(answer === data[currentQuestion].answer)}>
 //                   Submit
 //                 </button>
-//                 {/* Render Map component with user's location */}
 //                 <Map userLocation={userLocation} destination={data[currentQuestion].location.coordinates} />
 //               </div>
 //             </div>
 //           ) : (
 //             <p>No questions available.</p>
-//           )}
+//           )} */}
         </div>
     );
 }

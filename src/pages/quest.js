@@ -38,10 +38,11 @@ const Quest = () => {
                 Authorization: `Bearer ${token}`
             }
         }).then(function (response) {
-            for (let i = 0; i < response.data.orders.length; i++) {
-                console.log(response.data.orders[i]);
+            console.log(response);
+            for (let i = 0; i < response.data.quests.length; i++) {
+                console.log(response.data.quests[i]);
                 console.log(questId);
-                if (response.data.orders[i].quest._id == questId) {
+                if (response.data.quests[i].quest._id === questId) {
                     console.log("Purchased");
                     setPurchased(true);
                     break;
@@ -175,14 +176,14 @@ const Quest = () => {
                                 </div>
                             </div>
 
-//                             <div className='border border-2 border-dark' style={{ height: '2px', width: '100%'}}></div>
+{/* //                             <div className='border border-2 border-dark' style={{ height: '2px', width: '100%'}}></div>
 //                             <div className='py-4 d-flex flex-row justify-content-around'>
 //                                 <p className='m-0'>Tổng tiền</p>
 //                                 <p className='m-0'>{total.toLocaleString()}đ</p>
 //                             </div>
 //                             <Link to={`/checkout/${questId}?quantity=${quantity}`}>
 //                                 <button className='btn rounded-pill bg-danger text-white mb-3'>Đặt ngay</button>
-//                             </Link>
+//                             </Link> */}
 
                         </div>
                     </div>
@@ -200,7 +201,7 @@ const Quest = () => {
                 </div>
 
 
-//                 <div className="mt-5">
+{/* //                 <div className="mt-5">
 //                     <h2 className="text-start">Ratings</h2>
 //                     <div className='d-flex flex-row'>
 //                         <h1 className='px-3'>{quest.rating ? quest.ratings : 0}</h1>
@@ -209,7 +210,7 @@ const Quest = () => {
 //                             <p>{quest.ratings.length}</p>
 //                         </div>
 //                     </div>
-//                 </div>
+//                 </div> */}
 
                 {/* Top quest */}
                 <div className="mt-5">
@@ -221,7 +222,7 @@ const Quest = () => {
                     </div>
 
 //             {/* Top quest */}
-//             <div className="mt-5">
+{/* //             <div className="mt-5">
 //                 <h2 className="text-start">Có thể bạn thích</h2>
 //                 <div className="row my-5">
 //                     {topQuests.map((quest) => (
@@ -241,7 +242,7 @@ const Quest = () => {
 //                             </div>
 //                         </Link>
 //                         </div>
-//                     ))}
+//                     ))} */}
 
                 </div>
             </div>
