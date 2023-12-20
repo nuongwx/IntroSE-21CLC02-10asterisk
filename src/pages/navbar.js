@@ -30,48 +30,44 @@ const NavbarComponent = ({ isLoggedIn, onLogout }) => {
                 <div className="collapse navbar-collapse justify-content-end" id="navbarNav">
                     <ul className="navbar-nav ms-auto">
                         <li className="nav-item d-flex align-items-center">
-                            <Link to="#" className="nav-link"><b>Hướng dẫn sử dụng</b></Link>
+                            <Link to="#" className="nav-link text-dark"><b>Hướng dẫn sử dụng</b></Link>
                         </li>
                         <li className="nav-item d-flex align-items-center">
-                            <Link to="#" className="nav-link"><b>Tạo câu chuyện</b></Link>
+                            <Link to="#" className="nav-link text-dark"><b>Tạo câu chuyện</b></Link>
                         </li>
                         <li className="nav-item d-flex align-items-center">
-                            {token ?
-                                <ul className="nav-item dropdown">
-                                    <a className="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                        <i className='bi bi-person-fill'></i>
-                                    </a>
-                                    <ul className="dropdown-menu">
-                                        <li><Link to="/profile" className="dropdown-item">Profile</Link></li>
-                                        <li><hr className="dropdown-divider" /></li>
-                                        <button onClick={event => { removeToken(); }} className="dropdown-item">Logout</button>
-                                    </ul>
-                                </ul>
-                                : <a href="/login" className="nav-link mx-lg-3">
-                                    <button className="btn btn-outline-warning rounded-pill"><b>Đăng nhập</b></button>
-                                </a>
-                            }
+//                             {token ?
+//                                 <ul className="nav-item dropdown">
+//                                     <a className="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+//                                         <i className='bi bi-person-fill'></i>
+//                                     </a>
+//                                     <ul className="dropdown-menu">
+//                                         <li><Link to="/profile" className="dropdown-item">Profile</Link></li>
+//                                         <li><hr className="dropdown-divider" /></li>
+//                                         <button onClick={event => { removeToken(); }} className="dropdown-item">Logout</button>
+//                                     </ul>
+//                                 </ul>
+//                                 : <a href="/login" className="nav-link mx-lg-3">
+//                                     <button className="btn btn-outline-warning rounded-pill"><b>Đăng nhập</b></button>
+//                                 </a>
+//                             }
 
-                        </li>
-                        {/* {isLoggedIn ? (
-                            <li className="nav-item dropdown">
-                                <a className="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                    <i className='bi bi-person-fill'></i>
-                                </a>
-                                <ul className="dropdown-menu">
-                                    <li><Link to="/profile" className="dropdown-item">Profile</Link></li>
-                                    <li><hr className="dropdown-divider" /></li>
-                                    <button onClick={event => { handleLogout(); onLogout(); }} className="dropdown-item">Logout</button>
-                                </ul>
-                            </li>
-                        ) : (
-                            // Content to show when the user is not logged in
-                            <li className="nav-item d-flex align-items-center">
-                                <Link to="/login" className="nav-link mx-lg-3">
+//                             <Link to="/help" className="nav-link text-dark"><b>Trợ giúp</b></Link>
+                            {token ? (
+                                <>
+                                    <a href="/profile" className="nav-link mx-lg-3">
+                                        <button className="btn btn-outline-warning rounded-pill"><b>Trang cá nhân</b></button>
+                                    </a>
+                                    <div>
+                                        <button className="btn btn-outline-warning rounded-pill" onClick={event => { removeToken(); }}><b>Đăng xuất</b></button>
+                                    </div>
+                                </>
+                            ) : (
+                                <a href="/login" className="nav-link mx-lg-3">
                                     <button className="btn btn-outline-warning rounded-pill"><b>Đăng nhập</b></button>
-                                </Link>
-                            </li>
-                        )} */}
+                                </a>
+                            )}
+                        </li>
                     </ul>
                 </div>
             </div>

@@ -174,6 +174,16 @@ const Quest = () => {
                                     { purchased ? <Link reloadDocument to={`/quest/${quest.id}/quiz`} className='btn btn-danger w-75 my-3'>Play now!</Link> : <Link reloadDocument to={`/checkout/${quest.id}`} className='btn btn-danger w-75 my-3' disabled>Order now!</Link>}
                                 </div>
                             </div>
+
+//                             <div className='border border-2 border-dark' style={{ height: '2px', width: '100%'}}></div>
+//                             <div className='py-4 d-flex flex-row justify-content-around'>
+//                                 <p className='m-0'>Tổng tiền</p>
+//                                 <p className='m-0'>{total.toLocaleString()}đ</p>
+//                             </div>
+//                             <Link to={`/checkout/${questId}?quantity=${quantity}`}>
+//                                 <button className='btn rounded-pill bg-danger text-white mb-3'>Đặt ngay</button>
+//                             </Link>
+
                         </div>
                     </div>
                 </div>
@@ -189,16 +199,17 @@ const Quest = () => {
                     </div>
                 </div>
 
-                <div className="mt-5">
-                    <h2 className="text-start">Ratings</h2>
-                    <div className='d-flex flex-row'>
-                        <h1 className='px-3'>{quest.rating ? quest.ratings : 0}</h1>
-                        <div>
-                            <RatingStars rating={quest.averageRating} />
-                            <p>{quest.ratings.length}</p>
-                        </div>
-                    </div>
-                </div>
+
+//                 <div className="mt-5">
+//                     <h2 className="text-start">Ratings</h2>
+//                     <div className='d-flex flex-row'>
+//                         <h1 className='px-3'>{quest.rating ? quest.ratings : 0}</h1>
+//                         <div>
+//                             <RatingStars rating={quest.averageRating} />
+//                             <p>{quest.ratings.length}</p>
+//                         </div>
+//                     </div>
+//                 </div>
 
                 {/* Top quest */}
                 <div className="mt-5">
@@ -208,6 +219,30 @@ const Quest = () => {
                             <Tile item={quest} />
                         ))}
                     </div>
+
+//             {/* Top quest */}
+//             <div className="mt-5">
+//                 <h2 className="text-start">Có thể bạn thích</h2>
+//                 <div className="row my-5">
+//                     {topQuests.map((quest) => (
+//                         <div key={quest.id} className="col-xs-12 col-sm-6 col-md-4 col-lg-3 gap-3 text-start">
+//                         <Link to={`/quest/${quest.id}`} className="text-decoration-none text-dark">
+//                             <div className="card h-100 mb-4 border-0 shadow-none" style={{ borderRadius: '2rem', overflow: 'hidden', display: 'flex', flexDirection: 'column' }}>
+//                             <img src={quest.image} className="card-img-top" alt={quest.title} style={{ borderRadius: '2rem', width: '100%', aspectRatio: '1/1', objectFit: 'cover' }} />
+//                             <div className="card-body p-0 d-flex flex-column justify-content-between">
+//                                 <div>
+//                                 <p className="m-0">
+//                                     <RatingStars rating={quest.averageRating} /> {quest.averageRating} ({quest.ratings.length}) - {quest.location}
+//                                 </p>
+//                                 <h5 style={{ textTransform: 'capitalize' }} className="my-1">{quest.title}</h5>
+//                                 </div>
+//                                 <p>{quest.price}đ/người - {quest.duration} phút</p>
+//                             </div>
+//                             </div>
+//                         </Link>
+//                         </div>
+//                     ))}
+
                 </div>
             </div>
 
