@@ -2,12 +2,13 @@ import React from "react";
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import useToken from "../utils/auth";
+import { Link } from "react-router-dom";
 
 export default function Profile() {
     const { token } = useToken();
     if (!token) window.location.href = "/login";
     const { isLoading, error, data, refetch } = useQuery({
-        queryKey: "profile",
+        queryKey: ["profile"],
         queryFn: () => axios.get("http://localhost:3001/auth/profile", {
             headers: {
                 Authorization: `Bearer ${token}`
@@ -93,7 +94,7 @@ export default function Profile() {
                         <thead>
                             <tr>
                                 <th scope="col">Quest</th>
-                                <th scope="col">Status</th>
+                                <th scope="col">Score</th>
                                 <th scope="col">Date</th>
                             </tr>
                         </thead>
@@ -101,7 +102,7 @@ export default function Profile() {
                             {data.attempts.map(attempt => (
                                 <tr key={attempt._id}>
                                     <td>{attempt.quest.title}</td>
-                                    <td>{attempt.status}</td>
+                                    <td>{attempt.score}</td>
                                     <td>{attempt.date}</td>
                                 </tr>
                             ))}
@@ -114,12 +115,14 @@ export default function Profile() {
                         <thead>
                             <tr>
                                 <th scope="col">Quest</th>
+                                <th scope="col">Details</th>
                             </tr>
                         </thead>
                         <tbody>
                             {data.quests.map(quest => (
                                 <tr key={quest.quest._id}>
                                     <td>{quest.quest.title}</td>
+                                    <td><Link to={`/quest/${quest.quest._id}`}>Details</Link></td>
                                 </tr>
                             ))}
                         </tbody>

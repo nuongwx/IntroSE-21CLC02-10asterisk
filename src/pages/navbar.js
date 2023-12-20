@@ -36,7 +36,23 @@ const NavbarComponent = ({ isLoggedIn, onLogout }) => {
                             <Link to="#" className="nav-link text-dark"><b>Tạo câu chuyện</b></Link>
                         </li>
                         <li className="nav-item d-flex align-items-center">
-                            <Link to="/help" className="nav-link text-dark"><b>Trợ giúp</b></Link>
+//                             {token ?
+//                                 <ul className="nav-item dropdown">
+//                                     <a className="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+//                                         <i className='bi bi-person-fill'></i>
+//                                     </a>
+//                                     <ul className="dropdown-menu">
+//                                         <li><Link to="/profile" className="dropdown-item">Profile</Link></li>
+//                                         <li><hr className="dropdown-divider" /></li>
+//                                         <button onClick={event => { removeToken(); }} className="dropdown-item">Logout</button>
+//                                     </ul>
+//                                 </ul>
+//                                 : <a href="/login" className="nav-link mx-lg-3">
+//                                     <button className="btn btn-outline-warning rounded-pill"><b>Đăng nhập</b></button>
+//                                 </a>
+//                             }
+
+//                             <Link to="/help" className="nav-link text-dark"><b>Trợ giúp</b></Link>
                             {token ? (
                                 <>
                                     <a href="/profile" className="nav-link mx-lg-3">

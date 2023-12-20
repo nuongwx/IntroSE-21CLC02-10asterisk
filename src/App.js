@@ -8,6 +8,7 @@ import Login from './pages/login';
 import NavbarComponent from './pages/navbar';
 import Register from './pages/register';
 import Quest from './pages/quest';
+import Explore from './pages/explore';
 import Quiz from './pages/quiz'
 import Checkout from './pages/checkout.jsx';
 import ProtectedRoute from './ProtectedRoute.js'
@@ -63,6 +64,7 @@ function App() {
                             <Checkout />
                         </>
                     } />
+                    <Route path="/explore" element={<><NavbarComponent /><Explore /></>} />
                     <Route path="/quest/:questId" element={<><NavbarComponent /><Quest /></>} />
                     <Route path="/quest/:questId/quiz" element={<><NavbarComponent /><Quiz /></>} />
                     <Route path="/management/" element={<QuestList />} />

@@ -110,26 +110,40 @@ const Home = () => {
             <h2 className="text-center">Trải nghiệm hot nhất</h2>
             <div className="row my-5">
                 {topQuests.map((quest) => (
-                    <div key={quest.id} className="col-xs-12 col-sm-6 col-md-4 col-lg-3 gap-3 text-start">
-                        <Link to={`/quest/${quest.id}`} className="text-decoration-none text-dark">
-                            <div className="card h-100 mb-4 border-0 shadow-none" style={{ borderRadius: '2rem', overflow: 'hidden', display: 'flex', flexDirection: 'column' }}>
-                                <img src={quest.image} className="card-img-top" alt={quest.title} style={{ borderRadius: '2rem', width: '100%', aspectRatio: '1/1', objectFit: 'cover' }} />
-                                <div className="card-body p-0 d-flex flex-column justify-content-between">
-                                    <div>
-                                        <p className="m-0">
-                                            <RatingStars rating={quest.averageRating} /> {quest.averageRating} ({quest.ratings.length}) - {quest.location}
-                                        </p>
-                                        <h5 style={{ textTransform: 'capitalize' }} className="my-1">{quest.title}</h5>
-                                    </div>
-                                    <p>{quest.price}đ/người - {quest.duration} phút</p>
-                                </div>
+
+                <div key={quest.id} className="col-xs-12 col-sm-6 col-md-4 col-lg-3 gap-3 text-start">
+                    <Link to={`/quest/${quest.id}`} className="text-decoration-none text-dark">
+                        <div className="card mb-4 border-0" style={{ borderRadius: '2rem', overflow: 'hidden' }}>
+                            <img src={quest.image} className="card-img-top" alt={quest.title} style={{ borderRadius: '2rem', height: '250px'}} />
+                            <div className="card-body p-0">
+                            <p className="m-0">
+                                <RatingStars rating={quest.averageRating} /> {quest.averageRating} ({quest.ratings.length}) - {quest.location}
+                            </p>
+                            <h5 style={{ textTransform: 'capitalize' }} className="my-1">{quest.title}</h5>
+                            <p>{quest.price}đ/người - {quest.duration} phút</p>
+                            
+//                     <div key={quest.id} className="col-xs-12 col-sm-6 col-md-4 col-lg-3 gap-3 text-start">
+//                         <Link to={`/quest/${quest.id}`} className="text-decoration-none text-dark">
+//                             <div className="card h-100 mb-4 border-0 shadow-none" style={{ borderRadius: '2rem', overflow: 'hidden', display: 'flex', flexDirection: 'column' }}>
+//                                 <img src={quest.image} className="card-img-top" alt={quest.title} style={{ borderRadius: '2rem', width: '100%', aspectRatio: '1/1', objectFit: 'cover' }} />
+//                                 <div className="card-body p-0 d-flex flex-column justify-content-between">
+//                                     <div>
+//                                         <p className="m-0">
+//                                             <RatingStars rating={quest.averageRating} /> {quest.averageRating} ({quest.ratings.length}) - {quest.location}
+//                                         </p>
+//                                         <h5 style={{ textTransform: 'capitalize' }} className="my-1">{quest.title}</h5>
+//                                     </div>
+//                                     <p>{quest.price}đ/người - {quest.duration} phút</p>
+//                                 </div>
+
                             </div>
                         </Link>
                     </div>
                 ))}
             </div>
             <div className="row justify-content-center">
-                <button className="btn btn-outline-primary text-center rounded-pill w-auto">Khám phá thêm</button>
+                {/* <button className="btn btn-outline-primary text-center rounded-pill w-auto">Khám phá thêm</button> */}
+                <Link to="/explore" className="btn btn-outline-primary text-center rounded-pill w-auto">Khám phá thêm</Link>
             </div>
         </div>
 
