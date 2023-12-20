@@ -5,6 +5,7 @@ import useToken from "../utils/auth";
 
 export default function Profile() {
     const { token } = useToken();
+    if (!token) window.location.href = "/login";
     const { isLoading, error, data, refetch } = useQuery({
         queryKey: "profile",
         queryFn: () => axios.get("http://localhost:3001/auth/profile", {
@@ -124,7 +125,7 @@ export default function Profile() {
                         </tbody>
                     </table>
                 </div>
-                                
+
                 <div className="col-12">
                     <h1>Orders</h1>
                     <table className="table">

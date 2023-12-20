@@ -2,8 +2,8 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import useToken from '../utils/auth';
 
-const NavbarComponent = ( { isLoggedIn, onLogout }) => {
-    const { token, setToken } = useToken();
+const NavbarComponent = ({ isLoggedIn, onLogout }) => {
+    const { token, setToken, removeToken } = useToken();
     console.log('Token:', token);
 
     const handleLogout = async () => {
@@ -35,7 +35,18 @@ const NavbarComponent = ( { isLoggedIn, onLogout }) => {
                         <li className="nav-item d-flex align-items-center">
                             <Link to="#" className="nav-link"><b>Tạo câu chuyện</b></Link>
                         </li>
-                        { isLoggedIn ? (
+                        <li className="nav-item d-flex align-items-center">
+                            {token ?
+                                <a href="/profile" className="nav-link mx-lg-3">
+                                    <button className="btn btn-outline-warning rounded-pill"><b>Trang cá nhân</b></button>
+                                </a>
+                                : <a href="/login" className="nav-link mx-lg-3">
+                                    <button className="btn btn-outline-warning rounded-pill"><b>Đăng nhập</b></button>
+                                </a>
+                            }
+                            <Link to="/help" className="nav-link"><b>Trợ giúp</b></Link>
+                        </li>
+                        { token ? (
                              <li className="nav-item dropdown">
                                 <a className="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                     <i className='bi bi-person-fill'></i>
@@ -43,7 +54,7 @@ const NavbarComponent = ( { isLoggedIn, onLogout }) => {
                                 <ul className="dropdown-menu">
                                     <li><Link to="/profile" className="dropdown-item">Profile</Link></li>
                                     <li><hr className="dropdown-divider" /></li>
-                                    <button onClick={event => {handleLogout(); onLogout();}} className="dropdown-item">Logout</button>
+                                    <button onClick={event => { removeToken(); }} className="dropdown-item">Logout</button>
                                 </ul>
                             </li>
                         ) : (
@@ -53,7 +64,7 @@ const NavbarComponent = ( { isLoggedIn, onLogout }) => {
                                     <button className="btn btn-outline-warning rounded-pill"><b>Đăng nhập</b></button>
                                 </Link>
                             </li>
-                        )}
+                        )} */}
                     </ul>
                 </div>
             </div>
