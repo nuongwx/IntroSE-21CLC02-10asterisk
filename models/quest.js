@@ -26,9 +26,18 @@ const QuestSchema = new mongoose.Schema({
 
     ratings: [RatingSchema],
 
-    duration: Number,
-    distance: Number,
-    commission: Number,
+    duration: {
+        type: Number,
+        default: 0
+    },
+    distance: {
+        type: Number,
+        default: 0
+    },
+    commission: {
+        type: Number,
+        default: 0
+    },
 
     // creator, location, category, tags, status, createdDate, updatedDate
 
@@ -65,7 +74,7 @@ QuestSchema.virtual('averageRating').get(function () {
     if (Array.isArray(this.ratings) && this.ratings.length > 0) {
         // Filter out null or undefined ratings and calculate the average
         const validRatings = this.ratings.filter(rating => rating && rating.rating !== undefined);
-        
+
         if (validRatings.length > 0) {
             const sum = validRatings.reduce((acc, cur) => acc + cur.rating, 0);
             return sum / validRatings.length;

@@ -8,6 +8,7 @@ const Attempt = require('./attempt');
 const Rating = require('./rating');
 
 exports.test = async (req, res) => {
+    return;
     try {
         // try {
         //     await Question.collection.drop();
@@ -81,19 +82,19 @@ exports.test = async (req, res) => {
         await Order.create({
             user: user,
             quest: quest1,
-            status: 'approved'
+            status: 'completed'
         });
 
         await Order.create({
             user: user2,
             quest: quest1,
-            status: 'approved'
+            status: 'completed'
         });
 
         await Order.create({
             user: user2,
             quest: quest2,
-            status: 'approved'
+            status: 'completed'
         });
 
         let Attempt1 = await Attempt.create({

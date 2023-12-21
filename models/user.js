@@ -38,7 +38,7 @@ UserSchema.virtual('quests', {
     ref: 'Order',
     localField: '_id',
     foreignField: 'user',
-    match: { status: 'approved' },
+    match: { status: 'completed' },
     options: { select: 'quest' }
 });
 

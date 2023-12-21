@@ -201,7 +201,7 @@ router.post('/order', async (req, res) => {
             await Quest.findById(quest).then(async (res_quest) => {
                 console.log(res_quest);
                 if (res_quest) {
-                    let order = await Order.create({ user: res_user, quest: res_quest, status: 'pending' })
+                    let order = await Order.create({ user: res_user, quest: res_quest, status: 'completed' })
                     return res.json(order);
                 } else {
                     return res.status(400).json({ error: 'Quest not found' });
