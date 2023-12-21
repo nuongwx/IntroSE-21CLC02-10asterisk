@@ -11,7 +11,7 @@ export default function Quiz() {
         queryKey: ['questions', questId],
         queryFn: () =>
             axios
-                .get(`http://localhost:3001/api/quest/${questId}`)
+                .get(`http://localhost:3001/api/quest/${questId}/questions`)
                 .then((response) => response.data),
     });
 
@@ -66,13 +66,15 @@ export default function Quiz() {
         }
 
         const nextQuestion = currentQuestion + 1;
-        if (nextQuestion < data.questions.length) {
+        if (nextQuestion < data.length) {
             setCurrentQuestion(nextQuestion);
         } else {
             setCurrentQuestion(nextQuestion);
             setShowScore(true);
         }
     };
+
+    console.log(data)
 
     return (
         <div className='d-flex justify-content-center align-items-center vh-100 pt-5'>
@@ -83,12 +85,12 @@ export default function Quiz() {
                             <span className="badge bg-success">Correct</span>
                         </div>
                         <div>
-                            <span dangerouslySetInnerHTML={{ __html: data.questions[currentQuestion - 1].info }}></span>
+                            <span dangerouslySetInnerHTML={{ __html: data[currentQuestion - 1].info }}></span>
                         </div>
 
                     </div>
                     <div className='card-body'>
-                        You scored {score} out of {data.questions.length}
+                        You scored {score} out of {data.length}
                     </div>
                     <div className='card-body'>
                         <Link to={`/quest/${questId}`} className="btn btn-primary">Back to Quest</Link>
@@ -97,22 +99,22 @@ export default function Quiz() {
                 </div>
             ) : (
                 <div style={{ width: '75vw' }}>
-                    {data.questions.length > 0 ? (
+                    {data.length > 0 ? (
                         <div className="card">
                             {showInfo ? (<div className="card-body">
                                 <div>
                                     <span className="badge bg-success">Correct</span>
                                 </div>
                                 <div>
-                                    <span dangerouslySetInnerHTML={{ __html: data.questions[currentQuestion - 1].info }}></span>
+                                    <span dangerouslySetInnerHTML={{ __html: data[currentQuestion - 1].info }}></span>
                                 </div>
                                 <button className="btn btn-primary" onClick={() => setShowInfo(false)}>
                                     Next</button>
                             </div>)
 
                                 : (<div className="card-body">
-                                    <h3 className="card-title">Question {currentQuestion + 1} of {data.questions.length}</h3>
-                                    <p className="card-text">{data.questions[currentQuestion].question}</p>
+                                    <h3 className="card-title">Question {currentQuestion + 1} of {data.length}</h3>
+                                    <p className="card-text">{data[currentQuestion].question}</p>
                                     <div className="mb-3">
                                         <label htmlFor="userAnswer" className="form-label">Your Answer:</label>
                                         <input
@@ -124,11 +126,11 @@ export default function Quiz() {
                                             style={{ height: '5rem' }}
                                         />
                                     </div>
-                                    <button className="btn btn-primary" onClick={() => handleAnswerOptionClick(answer === data.questions[currentQuestion].answer)}>
+                                    <button className="btn btn-primary" onClick={() => handleAnswerOptionClick(answer === data[currentQuestion].answer)}>
                                         Submit
                                     </button>
                                     {/* Render Map component with user's location */}
-                                    <Map userLocation={userLocation} destination={data.questions[currentQuestion].location.coordinates} />
+                                    <Map userLocation={userLocation} destination={data[currentQuestion].location.coordinates} />
                                 </div>)}
                         </div>
                     ) : (

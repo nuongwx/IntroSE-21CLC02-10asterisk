@@ -1,5 +1,5 @@
 import { React, useState } from 'react';
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, useNavigate } from 'react-router-dom';
 import { QueryClient, QueryClientProvider, useQuery } from '@tanstack/react-query';
 
 import './styles/App.css';
@@ -19,6 +19,7 @@ import QuestEditor from './pages/management/quest-editor.jsx';
 import useToken from './utils/auth.js';
 
 function App() {
+  const navigate = useNavigate()
     const { token, setToken } = useToken();
     const [isLoggedIn, setLoggedIn] = useState(false);
 
@@ -36,7 +37,7 @@ function App() {
                     <Route path="/" element={<><NavbarComponent isLoggedIn={isLoggedIn} onLogout={handleLogout} /><Home /></>} />
                     <Route path="/login" element={
                         <>
-                            <NavbarComponent />
+                            <NavbarComponent isLoggedIn={isLoggedIn} onLogout={handleLogout} />
                             <ProtectedRoute isAuthenticated={!isLoggedIn}>
                                 <Login isLoggedIn={isLoggedIn} onLogin={handleLogin} setToken={setToken} />
                             </ProtectedRoute>
@@ -44,7 +45,7 @@ function App() {
                     } />
                     <Route path="/register" element={
                         <>
-                            <NavbarComponent />
+                            <NavbarComponent isLoggedIn={isLoggedIn} onLogout={handleLogout} />
                             <ProtectedRoute isAuthenticated={!isLoggedIn}>
                                 <Register />
                             </ProtectedRoute>
@@ -52,7 +53,7 @@ function App() {
                     } />
                     <Route path="/profile" element={
                         <>
-                            <NavbarComponent />
+                            <NavbarComponent isLoggedIn={isLoggedIn} onLogout={handleLogout} />
                             <ProtectedRoute isAuthenticated={!isLoggedIn}>
                                 <Profile />
                             </ProtectedRoute>
@@ -60,16 +61,22 @@ function App() {
                     } />
                     <Route path="/checkout/:questId" element={
                         <>
-                            <NavbarComponent />
+                            <NavbarComponent isLoggedIn={isLoggedIn} onLogout={handleLogout} />
                             <Checkout />
                         </>
                     } />
-                    <Route path="/explore" element={<><NavbarComponent /><Explore /></>} />
-                    <Route path="/quest/:questId" element={<><NavbarComponent /><Quest /></>} />
-                    <Route path="/quest/:questId/quiz" element={<><NavbarComponent /><Quiz /></>} />
+                    <Route path="/explore" element={<><NavbarComponent isLoggedIn={isLoggedIn} onLogout={handleLogout} /><Explore /></>} />
+                    <Route path="/quest/:questId" element={<><NavbarComponent isLoggedIn={isLoggedIn} onLogout={handleLogout} /><Quest /></>} />
+                    <Route path="/quest/:questId/quiz" element={
+                        <>
+                          <NavbarComponent isLoggedIn={isLoggedIn} onLogout={handleLogout} />
+                          <ProtectedRoute isAuthenticated={!isLoggedIn}>
+                            <Quiz />
+                          </ProtectedRoute>
+                        </>
+                    } />
                     <Route path="/management/" element={<QuestList />} />
                     <Route path="/management/:questId" element={<QuestEditor />} />
-
                 </Routes>
             </div>
         </QueryClientProvider>
