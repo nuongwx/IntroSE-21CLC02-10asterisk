@@ -3,17 +3,8 @@ import { Link } from 'react-router-dom';
 import useToken from '../utils/auth';
 
 const NavbarComponent = ({ isLoggedIn, onLogout }) => {
-    const { token, setToken, removeToken } = useToken();
+    const { token, removeToken } = useToken();
     console.log('Token:', token);
-
-    const handleLogout = async () => {
-        try {
-            setToken()
-        } catch (error) {
-            // Handle any errors that may occur during logout
-            console.error('Logout failed:', error);
-        }
-    };
 
     return (
         <nav className="navbar navbar-expand-lg navbar-light bg-transparent">
@@ -36,30 +27,13 @@ const NavbarComponent = ({ isLoggedIn, onLogout }) => {
                             <Link to="#" className="nav-link text-dark"><b>Tạo câu chuyện</b></Link>
                         </li>
                         <li className="nav-item d-flex align-items-center">
-{/* //                             {token ?
-//                                 <ul className="nav-item dropdown">
-//                                     <a className="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-//                                         <i className='bi bi-person-fill'></i>
-//                                     </a>
-//                                     <ul className="dropdown-menu">
-//                                         <li><Link to="/profile" className="dropdown-item">Profile</Link></li>
-//                                         <li><hr className="dropdown-divider" /></li>
-//                                         <button onClick={event => { removeToken(); }} className="dropdown-item">Logout</button>
-//                                     </ul>
-//                                 </ul>
-//                                 : <a href="/login" className="nav-link mx-lg-3">
-//                                     <button className="btn btn-outline-warning rounded-pill"><b>Đăng nhập</b></button>
-//                                 </a>
-//                             }
-
-//                             <Link to="/help" className="nav-link text-dark"><b>Trợ giúp</b></Link> */}
-                            {token ? (
+                            {token || isLoggedIn ? (
                                 <>
                                     <a href="/profile" className="nav-link mx-lg-3">
                                         <button className="btn btn-outline-warning rounded-pill"><b>Trang cá nhân</b></button>
                                     </a>
                                     <div>
-                                        <button className="btn btn-outline-warning rounded-pill" onClick={event => { removeToken(); }}><b>Đăng xuất</b></button>
+                                        <button className="btn btn-outline-warning rounded-pill" onClick={event => { removeToken(); window.location.reload(); }}><b>Đăng xuất</b></button>
                                     </div>
                                 </>
                             ) : (

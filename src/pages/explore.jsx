@@ -16,7 +16,7 @@ export default function Explore() {
     if (isFetching) return <h1>Fetching...</h1>;
 
     return (
-        <div className="container">
+        <div className="container" style={{ minHeight: '100vh'}}>
             <h1 className="text-center mt-5">Explore</h1>
             <div className="row">
                 {quests.map((quest) => (

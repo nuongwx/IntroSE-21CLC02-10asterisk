@@ -38,10 +38,10 @@ const Quest = () => {
                 Authorization: `Bearer ${token}`
             }
         }).then(function (response) {
-            console.log(response);
+            // console.log(response);
             for (let i = 0; i < response.data.quests.length; i++) {
-                console.log(response.data.quests[i]);
-                console.log(questId);
+                // console.log(response.data.quests[i]);
+                // console.log(questId);
                 if (response.data.quests[i].quest._id === questId) {
                     console.log("Purchased");
                     setPurchased(true);
@@ -50,7 +50,6 @@ const Quest = () => {
             }
         });
     }
-
 
     const { isFetching, isPending, data: topQuests } = useQuery({
         queryKey: ['topQuests'],
@@ -64,6 +63,8 @@ const Quest = () => {
     });
 
     if (isFetching || isPending || isPending2 || isFetching2) return 'Loading...';
+
+    console.log(quest)
 
     const address = encodeURIComponent(quest.location || "23/2 Hoàng Sa, Đa Kao");
     return (
@@ -80,11 +81,11 @@ const Quest = () => {
                     <div>
                         <div className='row'>
                             <div className='col-8 pe-2'>
-                                <img src={quest.images[0]} alt="{quest.title}" style={{ height: '400px', width: "100%" }}></img>
+                                <img src={quest.images} alt="{quest.title}" style={{ height: '400px', width: "100%" }}></img>
                             </div>
                             <div className='col-4'>
-                                <img src={quest.images[0]} alt="{quest.title}" style={{ height: '200px', width: "100%" }}></img>
-                                <img src={quest.images[0]} alt="{quest.title}" style={{ height: '200px', width: "100%" }}></img>
+                                <img src={quest.images} alt="{quest.title}" style={{ height: '200px', width: "100%" }}></img>
+                                <img src={quest.images} alt="{quest.title}" style={{ height: '200px', width: "100%" }}></img>
                             </div>
                         </div>
                         <div className='row my-2'></div>

@@ -158,12 +158,6 @@ export default function Checkout() {
                         <div className="d-flex mb-lg-2">
                             <span className="me-auto">Price:</span>
                             <span>{data.data.price}</span>
-//                             <span className="me-auto">Quantity:</span>
-//                             <span>{quantity}</span>
-//                         </div>
-//                         <div className="d-flex mb-lg-2">
-//                             <span className="me-auto">Subtotal:</span>
-//                             <span>{(data.data.price * quantity).toLocaleString()}</span>
                         </div>
                         <div className="d-flex fw-bold fs-5">
                             <span className="me-auto">Total:</span>
