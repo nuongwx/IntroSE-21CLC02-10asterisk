@@ -81,11 +81,11 @@ const Quest = () => {
                     <div>
                         <div className='row'>
                             <div className='col-8 pe-2'>
-                                <img src={quest.images} alt="{quest.title}" style={{ height: '400px', width: "100%" }}></img>
+                                <img src={quest.images[0]} alt="{quest.title}" style={{ height: '400px', width: "100%" }}></img>
                             </div>
                             <div className='col-4'>
-                                <img src={quest.images} alt="{quest.title}" style={{ height: '200px', width: "100%" }}></img>
-                                <img src={quest.images} alt="{quest.title}" style={{ height: '200px', width: "100%" }}></img>
+                                <img src={quest.images[1]} alt="{quest.title}" style={{ height: '200px', width: "100%" }}></img>
+                                <img src={quest.images[2]} alt="{quest.title}" style={{ height: '200px', width: "100%" }}></img>
                             </div>
                         </div>
                         <div className='row my-2'></div>

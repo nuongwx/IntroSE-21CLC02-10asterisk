@@ -23,9 +23,28 @@ export default function Profile() {
     if (error) return "An error has occurred: " + error.message;
 
     function updateProfile() {
+        document.getElementById("newPassword").oninput = function () {
+            document.getElementById("newPassword").setCustomValidity("");
+            document.getElementById("confirmNewPassword").setCustomValidity("");
+        }
+
+        document.getElementById("confirmNewPassword").oninput = function () {
+            document.getElementById("newPassword").setCustomValidity("");
+            document.getElementById("confirmNewPassword").setCustomValidity("");
+        }
+
         const newPassword = document.getElementById("newPassword").value;
         const confirmNewPassword = document.getElementById("confirmNewPassword").value;
         const profileImage = document.getElementById("profileImage").files[0];
+
+        console.log(newPassword, confirmNewPassword);
+        if (newPassword !== confirmNewPassword) {
+            document.getElementById("newPassword").setCustomValidity("Passwords don't match");
+            document.getElementById("confirmNewPassword").setCustomValidity("Passwords don't match");
+            document.getElementById("newPassword").reportValidity();
+            document.getElementById("confirmNewPassword").reportValidity();
+            return;
+        }
 
         document.getElementById("newPassword").value = "";
         document.getElementById("confirmNewPassword").value = "";
@@ -53,7 +72,7 @@ export default function Profile() {
         <div className="container">
             <div className="row">
                 <div className="col-12">
-                    <form onSubmit={updateProfile}>
+                    <form onSubmit={updateProfile} action="javascript:void(0)">
                         <div className="row">
                             <div className="col-md-9">
                                 <input type="hidden" name="id" value={data._id} />

@@ -10,7 +10,7 @@ import QuestionPopup from '../../components/QuestionPopup'
 import Table from '../../components/Table'
 
 const QuestEditor = ({ id }) => {
-    id = window.location.href.split("/").pop();
+    id = window.location.href.split("/").pop().substring(0, 24);
 
     const { isLoading, error, data, refetch } = useQuery({
         queryKey: ['questEditor'],
@@ -25,7 +25,11 @@ const QuestEditor = ({ id }) => {
 
 
     // display question popup with data from the selected question
-    const [question, setQuestion] = useState({});
+    const [question, setQuestion] = useState({
+        location: {
+            coordinates: [0, 0]
+        }
+    });
 
     // editor
     const [value, setValue] = useState('');
@@ -59,11 +63,19 @@ const QuestEditor = ({ id }) => {
         document.getElementById("lat").value = "";
         document.getElementById("long").value = "";
         setValue("");
-        setQuestion({});
+        setQuestion({
+            location: {
+                coordinates: [0, 0]
+            }
+        });
     }
 
     function addQuestion() {
-        setQuestion({});
+        setQuestion({
+            location: {
+                coordinates: [0, 0]
+            }
+        });
         showPopup();
     }
 
@@ -78,13 +90,13 @@ const QuestEditor = ({ id }) => {
         console.log(question);
         console.log("send question");
         if (question._id != null) {
-            axios.put("http://localhost:3000/api/quest/" + id + "/questions/" + question._id, data).then((res) => {
+            axios.put("http://localhost:3001/api/quest/" + id + "/questions/" + question._id, data).then((res) => {
                 console.log("axios put");
                 refetch();
 
             });
         } else {
-            axios.post("http://localhost:3000/api/quest/" + id + "/questions", data).then((res) => {
+            axios.post("http://localhost:3001/api/quest/" + id + "/questions", data).then((res) => {
                 console.log("axios post");
                 refetch();
 
@@ -143,7 +155,7 @@ const QuestEditor = ({ id }) => {
 
     function uploadImage() {
         var file = document.getElementById("quest-image-upload").files[0];
-        if(!file) return;
+        if (!file) return;
         var formData = new FormData();
         formData.append("image", file);
         axios.post("http://localhost:3001/api/quest/" + id + "/image", formData, {
@@ -197,41 +209,41 @@ const QuestEditor = ({ id }) => {
                                             <button type="button" className="btn btn-close mt-auto" onClick={closePopup}></button>
                                         </div>
                                     </div>
-                                    <form>
+                                    <form action="javascript:void(0)" onSubmit={sendQuestion}>
                                         <div className="row">
                                             <div className="col-2 justify-content-end">
                                                 <label className="form-label">Order</label>
-                                                <input type="number" className="form-control" placeholder="Order" min="1" id="order" defaultValue={question.order} />
+                                                <input required type="number" className="form-control" placeholder="Order" min="1" id="order" defaultValue={question.order} />
                                             </div>
                                             <div className="col-4">
                                                 <label className="form-label" >Question</label>
-                                                <input type="text" className="form-control" id="question" defaultValue={question.question} />
+                                                <input required type="text" className="form-control" id="question" defaultValue={question.question} />
                                             </div>
                                             <div className="col-6">
                                                 <label className="form-label" >Address</label>
-                                                <input type="text" className="form-control" id="address" />
+                                                <input required type="text" className="form-control" id="address" />
                                             </div>
                                         </div>
                                         <div className="row">
                                             <div className="col-6">
                                                 <label className="form-label" >Lat</label>
-                                                <input type="number" className="form-control" id="lat" />
+                                                <input required type="number" className="form-control" id="lat" />
                                             </div>
                                             <div className="col-6">
                                                 <label className="form-label" >Long</label>
-                                                <input type="number" className="form-control" id="long" />
+                                                <input required type="number" className="form-control" id="long" />
                                             </div>
                                         </div>
                                         <div style={{ height: "300px" }} className="row">
                                             <label className="form-label">Map</label>
-                                            <div id="map" style={{ height: "200px" }}>
-                                                <h4>ưhat</h4>
+                                            <div id="map" style={{ height: "300px" }}>
+                                                <iframe width="100%" height="300" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" style={{ border: '0', borderRadius: '20px', padding: '0' }} src={"https://maps.google.com/maps?width=100%25&amp;height=400&amp;hl=en&amp;q=" + "" +"&amp;t=&amp;z=16&amp;ie=UTF8&amp;iwloc=B&amp;output=embed"}></iframe>
                                             </div>
                                         </div>
                                         <div className="row mt-5">
                                             <div clas="col-12">
                                                 <label className="form-label">Answer</label>
-                                                <input type="text" className="form-control" id="answer" defaultValue={question.answer} />
+                                                <input required type="text" className="form-control" id="answer" defaultValue={question.answer} />
                                             </div>
                                         </div>
                                         <div className="row">
@@ -242,7 +254,7 @@ const QuestEditor = ({ id }) => {
                                             </div>
                                         </div>
                                         <div className="row mt-3 justify-content-between">
-                                            <button type="button" className="btn btn-primary mt-auto" onClick={sendQuestion}>Save</button>
+                                            <button type="submit" className="btn btn-primary mt-auto">Save</button>
                                         </div>
                                     </form>
                                 </div>
@@ -260,15 +272,15 @@ const QuestEditor = ({ id }) => {
                                 <div className="card-header d-flex justify-content-between align-items-center">
                                     <a href="/management" className="btn btn-outline-primary">Back</a>
                                     <div>
-                                        <Link to="/management" reloadDocument>
-                                            <button type="button" className="btn btn-primary" onClick={saveQuest}>Save</button>
+                                        {/* <Link to="/management" reloadDocument> */}
+                                            <button form='quest-form' type="submit" className="btn btn-primary" onClick={saveQuest}>Save</button>
                                             <button type="button" className="btn btn-danger" onClick={deleteQuest}>Delete</button>
-                                        </Link>
+                                        {/* </Link> */}
                                     </div>
 
                                 </div>
                                 <div className="card-body">
-                                    <form>
+                                    <form id="quest-form" action="javascript:void(0)">
                                         <div className="row">
                                             <div className="col">
                                                 <label className="col-2 col-form-label">Title</label>
@@ -307,11 +319,11 @@ const QuestEditor = ({ id }) => {
                                             </div>
                                             <div className="col-3">
                                                 <label className="col-form-label">Price</label>
-                                                <input className="form-control" type="number" id="quest-price" required defaultValue={data.price} />
+                                                <input className="form-control" type="number" id="quest-price" required defaultValue={data.price} min="0" />
                                             </div>
                                             <div className="col-3">
                                                 <label className="col-form-label">Commission</label>
-                                                <input className="form-control" type="number" id="quest-commission" step="0.01" required defaultValue={data.commission} />
+                                                <input className="form-control" type="number" id="quest-commission" step="0.01" required defaultValue={data.commission} min="0" max="1" />
                                             </div>
                                         </div>
                                         <div className="row mt-5">
