@@ -15,7 +15,32 @@ const Register = () => {
     };
 
     const handleRegister = async (event) => {
+
         event.preventDefault();
+
+        document.getElementById("email").oninput = function () {
+            document.getElementById("email").setCustomValidity("");
+        }
+
+        document.getElementById("password").oninput = function () {
+            document.getElementById("password").setCustomValidity("");
+            document.getElementById("confirmPassword").setCustomValidity("");
+        }
+
+        document.getElementById("confirmPassword").oninput = function () {
+            document.getElementById("password").setCustomValidity("");
+            document.getElementById("confirmPassword").setCustomValidity("");
+        }
+
+        if(credentials.password !== credentials.confirmPassword) {
+            document.getElementById("password").setCustomValidity("Passwords don't match");
+            document.getElementById("confirmPassword").setCustomValidity("Passwords don't match");
+            document.getElementById("password").reportValidity();
+            document.getElementById("confirmPassword").reportValidity();
+            return;
+        }
+
+
 
         try {
             // Adjust the API endpoint for registration
@@ -43,12 +68,16 @@ const Register = () => {
                         <form onSubmit={handleRegister}>
                             <span className="text-danger">{registerError}</span>
                             <div className="form-group my-3">
-                                <label className="Toast" htmlFor="formEmail">Email</label>
+                                <label className="Toast" htmlFor="email">Email</label>
                                 <input type="email" id="email" name="email" className="form-control" placeholder="Enter email" value={credentials.email} onChange={handleInputChange} required/>
                             </div>
                             <div className="form-group my-3">
-                                <label className="Toast" htmlFor="formPassword">Mật khẩu</label>
+                                <label className="Toast" htmlFor="password">Mật khẩu</label>
                                 <input type="password" id="password" name="password" className="form-control" value={credentials.password} onChange={handleInputChange} placeholder="Mật khẩu" required/>
+                            </div>
+                            <div className="form-group my-3">
+                                <label className="Toast" htmlFor="confirmPassword">Nhập lại mật khẩu</label>
+                                <input type="password" id="confirmPassword" name="confirmPassword" className="form-control" onChange={handleInputChange} placeholder="Nhập lại mật khẩu" required/>
                             </div>
                             <button type="submit" className="btn btn-warning w-100">Đăng ký</button>
                         </form>
