@@ -54,7 +54,8 @@ const Home = () => {
                     <div className="col-xs-10 col-sm-8 col-md-6 col-lg-4">
                         <h1 className='text-dark'>Game tour khám phá thành phố</h1>
                         <p className='text-dark'>Ứng dụng sẽ dẫn lối bạn đến những điểm tham quan thú vị, tham gia giải mã thử thách và mở khoá những câu chuyện đặc sắc xung quanh thành phố!</p>
-                        <button type="button" className="btn btn-warning rounded-pill mr-3">Khám phá ngay</button>
+                        {/* <button type="button" className="btn btn-warning rounded-pill mr-3">Khám phá ngay</button> */}
+                        <Link to="/explore" className="btn btn-warning rounded-pill mr-3">Khám phá ngay</Link>
                         <button type="button" className="btn btn-outline-warning rounded-pill"><i className='bi bi-play'></i>Demo</button>
                     </div>
                 </div>

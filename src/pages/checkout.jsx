@@ -35,6 +35,7 @@ export default function Checkout() {
             email: document.getElementById("email").value,
         }).then((res) => {
             console.log(res.data);
+            window.location.href = '/quest/' + questId;
         }).catch((err) => {
             console.log(err);
         });
@@ -161,7 +162,7 @@ export default function Checkout() {
                         </div>
                         <div className="d-flex fw-bold fs-5">
                             <span className="me-auto">Total:</span>
-                            <span>{(data.data.price * quantity).toLocaleString()}</span>
+                            <span>{(data.data.price).toLocaleString()}</span>
                         </div>
                         <hr />
                         <div className="mt-4 gap-3" style={{ display: "flex", flexDirection: "column" }}>

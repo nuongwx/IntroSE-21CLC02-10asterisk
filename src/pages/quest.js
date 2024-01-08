@@ -29,7 +29,7 @@ const Quest = () => {
             setQuantity(quantity - 1);
         }
     };
-
+    let userId = null;
     const { token } = useToken();
     if (token) {
         console.log("Logged in");
@@ -48,6 +48,7 @@ const Quest = () => {
                     break;
                 }
             }
+            userId = response.data._id;
         });
     }
 
@@ -65,6 +66,24 @@ const Quest = () => {
     if (isFetching || isPending || isPending2 || isFetching2) return 'Loading...';
 
     console.log(quest)
+
+    function createRating() {
+        const data = {
+            score: document.getElementById("score").value,
+            comment: document.getElementById("comment").value,
+            user: userId,
+        }
+        axios.post(`http://localhost:3001/api/quest/${questId}/rating`, data, {
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        }).then(function (response) {
+            console.log(response);
+            window.location.reload();
+        }, (error) => {
+            console.log(error);
+        });
+    }
 
     const address = encodeURIComponent(quest.location || "23/2 Hoàng Sa, Đa Kao");
     return (
@@ -201,6 +220,56 @@ const Quest = () => {
                     </div>
                 </div>
 
+                <div className='pt-5'>
+                    <div className='row mb-3 text-start'>
+                        <div className='col-12'>
+                            <h1>Reviews</h1>
+                        </div>
+                    </div>
+                    <div className='row mb-4'>
+                        {quest.ratings.map((ratings) => (
+                            <div className='col-12 mb-3'>
+                                <div className='row'>
+                                    <div className='col-2'>
+                                        <img src={ratings.user.image} alt='avatar' style={{ height: '50px', width: '50px', borderRadius: '50%' }}></img>
+                                    </div>
+                                    <div className='col-10'>
+                                        <div className='row'>
+                                            <div className='col-12'>
+                                                <h5>{ratings.user.email}</h5>
+                                            </div>
+                                        </div>
+                                        <div className='row'>
+                                            <div className='col-12'>
+                                                <RatingStars rating={ratings.score} />
+                                            </div>
+                                        </div>
+                                        <div className='row'>
+                                            <div className='col-12'>
+                                                <p>{ratings.comment}</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        ))}
+                    </div>
+                    <div className='row mb-3 text-start'>
+                        <div className='col-12'>
+                            <h1>Leave a review</h1>
+                        </div>
+                        <div className='col-12'>
+                            <form onSubmit={createRating}>
+                                <div className="mb-3">
+                                    <input type="text" className="form-control" id="comment" placeholder="Comment" />
+                                    <input type="number" className="form-control" id="score" placeholder="Rating" />
+                                </div>
+                                <button type="submit" className="btn btn-primary">Submit</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
 
 {/* //                 <div className="mt-5">
 //                     <h2 className="text-start">Ratings</h2>
@@ -222,7 +291,7 @@ const Quest = () => {
                         ))}
                     </div>
 
-//             {/* Top quest */}
+               {/* Top quest */}
 {/* //             <div className="mt-5">
 //                 <h2 className="text-start">Có thể bạn thích</h2>
 //                 <div className="row my-5">

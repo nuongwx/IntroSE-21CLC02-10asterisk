@@ -53,6 +53,22 @@ export default function Quiz() {
 
     if (error) return `An error has occurred: ${error.message}`;
 
+    function finishQuiz() {
+        setShowScore(true);
+        // save score to database
+        axios.post(`http://localhost:3001/api/user/${questId}/attempts`, {
+            user: localStorage.getItem('userId'),
+            quest: questId,
+            score: score,
+            time: 0
+        })
+            .then((response) => {
+                console.log(response);
+            }, (error) => {
+                console.log(error);
+            });
+    }
+
     // Answer handler function
     const handleAnswerOptionClick = (isCorrect) => {
         setAnswer('');
@@ -70,7 +86,7 @@ export default function Quiz() {
             setCurrentQuestion(nextQuestion);
         } else {
             setCurrentQuestion(nextQuestion);
-            setShowScore(true);
+            finishQuiz();
         }
     };
 
