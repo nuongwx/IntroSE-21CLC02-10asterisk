@@ -73,10 +73,9 @@ QuestSchema.virtual('averageRating').get(function () {
     // Check if this.ratings is defined and is an array
     if (Array.isArray(this.ratings) && this.ratings.length > 0) {
         // Filter out null or undefined ratings and calculate the average
-        const validRatings = this.ratings.filter(rating => rating && rating.rating !== undefined);
-
+        const validRatings = this.ratings.filter(rating => rating && rating.score !== undefined);
         if (validRatings.length > 0) {
-            const sum = validRatings.reduce((acc, cur) => acc + cur.rating, 0);
+            const sum = validRatings.reduce((acc, cur) => acc + cur.score, 0);
             return sum / validRatings.length;
         }
     }

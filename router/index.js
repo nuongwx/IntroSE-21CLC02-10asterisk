@@ -6,6 +6,8 @@ const Quest = require('../models/quest');
 const Question = require('../models/question');
 const Order = require('../models/order');
 const User = require('../models/user');
+const Attempt = require('../models/attempt');
+const Rating = require('../models/rating');
 
 router.get('/', (req, res) => {
     res.send('Hello World!');
@@ -40,7 +42,7 @@ router.post('/quest', (req, res) => {
 
 // get quest by id
 router.get('/quest/:id', (req, res) => {
-    Quest.findById(req.params.id)
+    Quest.findById(req.params.id).populate('orders').populate('attempts').populate('ratings').populate('ratings.user')
         .then((result) => {
             res.json(result);
         })
@@ -65,6 +67,24 @@ router.delete('/quest/:id', (req, res) => {
     Quest.findByIdAndDelete(req.params.id)
         .then((result) => {
             res.json(result);
+        })
+        .catch((err) => {
+            console.log(err);
+        });
+});
+
+router.post('/quest/:id/rating', (req, res) => {
+    Quest.findById(req.params.id)
+        .then((result) => {
+            const rating = new Rating(req.body);
+            result.ratings.push(rating);
+            result.save()
+                .then((result) => {
+                    res.json(result);
+                })
+                .catch((err) => {
+                    console.log(err);
+                });
         })
         .catch((err) => {
             console.log(err);
@@ -299,9 +319,5 @@ router.get('/home/quest/top4Quests/', async (req, res) => {
         res.status(500).json({ error: 'Internal Server Error' });
     }
 });
-
-
-
-// TODOS: malfunctioned body params, sort questions on any changes
 
 module.exports = router;
